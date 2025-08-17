@@ -2,209 +2,87 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
       CS180/280A: Intro to Computer Vision and Computational Photography
     </title>
+    <meta name="description" content="CS180/280A Introduction to Computer Vision and Computational Photography at UC Berkeley - Fall 2025. Hands-on course covering image processing, computer vision, and computational photography." />
     <link rel="stylesheet" href="style.css" />
-    <style>
-      /* General font styles */
-      .font-helvetica {
-        font-size: 10pt;
-        font-family: "Helvetica", "sans-serif";
-      }
-
-      .font-helvetica-bold {
-        font-size: 10pt;
-        font-family: "Helvetica", "sans-serif";
-        font-weight: bold;
-      }
-
-      .font-helvetica-large {
-        font-size: 14pt;
-        font-family: "Helvetica", "sans-serif";
-      }
-
-      .font-helvetica-medium {
-        font-size: 11pt;
-        font-family: "Helvetica", "sans-serif";
-      }
-
-      /* Table styles */
-      .table-cell {
-        background: silver;
-        padding: 0.75pt;
-        vertical-align: top;
-      }
-
-      .table-cell-left-border {
-        border-left: 1px solid #000;
-      }
-
-      .table-cell-right-border {
-        border-right: 1px solid #000;
-      }
-
-      .table-header-cell {
-        background-color: #555555;
-        color: white;
-        padding: 0.75pt;
-        text-align: center;
-        vertical-align: top;
-      }
-
-      .table-row-border {
-        border: solid;
-        border-width: 1px 0;
-      }
-
-      /* Image styles */
-      .image {
-        height: 175px;
-        width: 262px;
-      }
-
-      /* Centered text */
-      .text-center {
-        text-align: center;
-      }
-
-      /* Remove default list styles */
-      ul {
-        list-style-type: disc;
-      }
-
-      /* Style for links */
-      a {
-        color: blue;
-        text-decoration: underline;
-      }
-
-      /* Adjust padding for list items */
-      ul li {
-        padding-left: 1em;
-      }
-
-      /* Remove default list styles */
-      img {
-        alt: "";
-      }
-
-      .class-choice  {
-        font-family: sans-serif;
-        font-size: 10pt;
-        font-weight: 600;
-        margin: 0.5em 0 1em 0em;
-      }
-
-      .class-choice img {
-        width:20px;
-        height:20px;
-      }
-    </style>
   </head>
   <body>
-    <h1 style="display: none">CS180/280A</h1>
-    <div class="WordSection1">
-      <table class="MsoNormalTable">
-        <tbody>
-          <tr>
-            <td colspan="2" style="padding: 2.65pt">
-              <p class="MsoNormal text-center">
-                <span class="font-helvetica">&nbsp;</span>
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td style="padding: 2.65pt" valign="top">
-              <p class="MsoNormal">
-                <span class="font-helvetica">
-                  <img
-                    src="./463_files/ucbseal_139_540.png"
-                    alt="Description: [SCS dragon logo]"
-                    height="75"
-                    width="75"
-                  />
-                </span>
-              </p>
-            </td>
-            <td style="padding: 2.65pt" valign="top">
-              <p class="MsoNormal">
-                <b
-                  ><span class="font-helvetica-large"
-                    >CS180/280A: Intro to Computer Vision and Computational
-                    Photography</span
-                  ></b
-                ><br />
-                <span class="font-helvetica-medium">
-                  <a href="http://www.cs.berkeley.edu/"
-                    >Computer Science Division</a
-                  ><br />
-                  <a href="http://www.berkeley.edu/"
-                    >University of California, Berkeley</a
-                  >
-                </span>
-              </p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <img
+            src="./463_files/ucbseal_139_540.png"
+            alt="UC Berkeley Seal"
+            class="logo"
+          />
+          <div>
+            <h1 class="course-title">
+              CS180/280A: Intro to Computer Vision and Computational Photography
+            </h1>
+            <div class="course-info">
+              <a href="http://www.cs.berkeley.edu/">
+                Computer Science Division
+              </a><br />
+              <a href="http://www.berkeley.edu/">
+                University of California, Berkeley
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
 
-      <p>
-        <b><span class="font-helvetica">Instructor:</span></b>
-        <span class="font-helvetica">
+    <main class="container">
+
+      <section class="course-info-section">
+        <h2>Course Information</h2>
+        <p>
+          <strong>Instructor:</strong>
           <a href="https://people.eecs.berkeley.edu/~kanazawa/">Angjoo Kanazawa</a> (OH: TBD), 
           <a href="https://people.eecs.berkeley.edu/~efros/">Alexei (Alyosha) Efros</a> (OH: TBD)<br />
-          <b>GSI: </b>
+          <strong>GSI:</strong>
           <a href="https://kerrj.github.io/">Justin Kerr</a> (OH: TBD), 
           <a href="https://konpat.notion.site/">Konpat Preechakul</a> (OH: TBD), 
           <a href="https://chungmin99.github.io/">Chung Min Kim</a> (OH: TBD), 
           <a href="https://brentyi.github.io/">Brent Yi</a> (OH: TBD)<br />
-          <b>Tutors: </b>
+          <strong>Tutors:</strong>
           Jameson Crate (OH: TBD), Jingfeng Yang (OH: TBD), Natalie Wei (OH: TBD), Jorge Diaz Chao (OH: TBD)<br />
-          <b>Reader: </b>
-          TODO: Update reader information<br />
-          <b>University Units:</b> 4<br />
-          <b>Semester:</b> Fall 2025<br />
-          <b>Google Calendar:</b>
-          <a
-            href="TODO: Update Google Calendar link"
-            >TODO: Update Google Calendar link</a
-          ><br />
-          <b>Ed: </b>
-          <a href="TODO: Update Ed link">TODO: Update Ed link</a
-          ><br />
-          <b>Gradescope Entry Code: </b>
+          <strong>University Units:</strong> 4<br />
+          <strong>Semester:</strong> Fall 2025<br />
+          <strong>Google Calendar:</strong>
+          <a href="TODO: Update Google Calendar link">TODO: Update Google Calendar link</a><br />
+          <strong>Ed:</strong>
+          <a href="TODO: Update Ed link">TODO: Update Ed link</a><br />
+          <strong>Gradescope Entry Code:</strong>
           <a href="https://www.gradescope.com/">TODO: Update Gradescope code</a><br />
-          <b>Syllabus: </b>
-          <a
-            href="TODO: Update syllabus link"
-            >TODO: Update syllabus link</a
-          ><br />
-          <b>Location:</b>&nbsp;TODO: Update location<br />
-          <b>Time: </b> TODO: Update time
-        </span>
-      </p>
+          <strong>Syllabus:</strong>
+          <a href="TODO: Update syllabus link">TODO: Update syllabus link</a><br />
+          <strong>Location:</strong> TODO: Update location<br />
+          <strong>Time:</strong> TODO: Update time
+        </p>
+      </section>
 
-      <p>
-        <b><span class="font-helvetica">PREREQUISITES:</span></b
-        ><br />
-        <span class="font-helvetica">
+      <section class="course-info-section">
+        <h2>Prerequisites</h2>
+        <p>
           This is a heavily project-oriented class, therefore good programming
-          proficiency (at least <b>CS 61B</b>) is absolutely essential and
-          required. Moreover, working knowledge of linear algebra (<b
-            >MATH 54, MATH 56, MATH 110, or EECS 16A</b
-          >) and multivariate calculus (e.g. <b>MATH 53</b>) are vital.
+          proficiency (at least <strong>CS 61B</strong>) is absolutely essential and
+          required. Moreover, working knowledge of linear algebra (<strong
+            >MATH 54, MATH 56, MATH 110, or EECS 16A</strong
+          >) and multivariate calculus (e.g. <strong>MATH 53</strong>) are vital.
           Experience with machine learning and neural networks is required in
           the second part of the course. You must have been taken beforehand or
-          are currently taking (<b>CS 182 or CS 189</b>). Due to the
+          are currently taking (<strong>CS 182 or CS 189</strong>). Due to the
           open-endedness of this course, creativity is a class requirement.
-        </span>
-      </p>
+        </p>
+      </section>
 
-      <p>
-        <b><span class="font-helvetica">COURSE DESCRIPTION:</span></b
-        ><br />
-        <span class="font-helvetica">
+      <section class="course-info-section">
+        <h2>Course Description</h2>
+        <p>
           The aim of this advanced undergraduate course is to introduce students
           to computing with visual data (images and video). We will cover
           acquisition, representation, and manipulation of visual information
@@ -217,258 +95,186 @@
           assignments, in which students will have the opportunity to acquire
           their own images and develop, largely from scratch, the image analysis
           and synthesis tools for solving applications.
-        </span>
-      </p>
+        </p>
+      </section>
 
-        <b><span class="font-helvetica">PROGRAMMING ASSIGNMENTS:</span></b
-        ><br />
-        <span class="font-helvetica">
-          <a href="hw/proj1/index.html"
-            >Project 1: Images of the Russian Empire -- Colorizing the
-            Prokudin-Gorskii Photo Collection</a
-          ><br />
+      <section class="projects-section">
+        <h2>Programming Assignments</h2>
+        
+        <div class="project-item">
+          <h3>
+            <a href="hw/proj1/index.html">
+              Project 1: Images of the Russian Empire -- Colorizing the Prokudin-Gorskii Photo Collection
+            </a>
+          </h3>
           <img
             src="463_files/image004.jpg"
-            alt="Description: http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/pub/www/images/3-8086-left.jpg"
-            width="300"
-            style="padding-top: 3px"
+            alt="Colorized Russian Empire photograph by Prokudin-Gorskii"
           />
-          
-          <br/>
-          See student submissions <a href="hw/proj1/results.html">here</a>.
-          <br/>
+          <p>
+            See student submissions <a href="hw/proj1/results.html">here</a>.
+          </p>
           <div class="class-choice">
+            <img src="463_files/cup_gold.png" alt="Gold award" />
             <strong>Class Choice Award: TBD!</strong>
-           </div>
-        </span>
+          </div>
+        </div>
         
-        <span class="font-helvetica">
-          <a href="hw/proj2/index.html"
-            >Project 2: Fun with Filters and Frequencies</a
-          >
-          <br />
-          <img src="463_files/hybrid.png" height="175px" alt="hybrid" />
-          <img src="463_files/orple.jpg" height="175px" alt="orple" />
-          <br/>
-          See student submissions <a href="hw/proj2/results.html">here</a>.
-          <br/>
-
+        <div class="project-item">
+          <h3>
+            <a href="hw/proj2/index.html">
+              Project 2: Fun with Filters and Frequencies
+            </a>
+          </h3>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <img src="463_files/hybrid.png" alt="Hybrid image example" style="max-width: 262px;" />
+            <img src="463_files/orple.jpg" alt="Orange-apple hybrid" style="max-width: 262px;" />
+          </div>
+          <p>
+            See student submissions <a href="hw/proj2/results.html">here</a>.
+          </p>
           <div class="class-choice">
+            <img src="463_files/cup_gold.png" alt="Gold award" />
             <strong>Class Choice Award: TBD!</strong>
-           </div>
-          
-          <br/>
-          
-        </span>
-
-        <span class="font-helvetica">
-          <a href="hw/proj3/index.html"
-            >Project 3: Face Morphing and Modelling a Photo Collection</a
-          ><br />
-          <img src="463_files/morph.png" height="175px" alt="morph" />
-
-          <br />
-          See student submissions <a href="hw/proj3/results.html">here</a>.
-          <br/>
-           <div class="class-choice">
+          </div>
+        </div>
+        
+        <div class="project-item">
+          <h3>
+            <a href="hw/proj3/index.html">
+              Project 3: Face Morphing and Modelling a Photo Collection
+            </a>
+          </h3>
+          <img src="463_files/morph.png" alt="Face morphing example" />
+          <p>
+            See student submissions <a href="hw/proj3/results.html">here</a>.
+          </p>
+          <div class="class-choice">
+            <img src="463_files/cup_gold.png" alt="Gold award" />
             <strong>Class Choice Award: TBD!</strong>
-           </div>
-          
-          <br/>
+          </div>
+        </div>
+        
+        <div class="project-item">
+          <h3>
+            <a href="hw/proj4/index.html">
+              Project 4: (Auto)stitching and Photo Mosaics
+            </a>
+          </h3>
+          <img src="463_files/image028.jpg" alt="Photo stitching example" />
+          <p>
+            See student submissions <a href="hw/proj4/results.html">here</a>.
+          </p>
+        </div>
+        
+        <div class="project-item">
+          <h3>
+            <a href="hw/proj5/index.html">
+              Project 5: Fun with Diffusion Models
+            </a>
+          </h3>
+          <img src="463_files/proj5_index.png" alt="Diffusion model examples" />
+          <p>
+            See student submissions <a href="hw/proj5/results.html">here</a>.
+          </p>
+          <div class="class-choice">
+            <img src="463_files/cup_gold.png" alt="Gold award" />
+            <strong>Class Choice Award: TBD!</strong>
+          </div>
+        </div>
+        
+        <div class="project-item">
+          <h3>
+            <a href="hw/fin_proj/index.html">
+              Final Project
+            </a>
+          </h3>
+          <img src="463_files/multifredo.jpg" alt="Final project examples" />
+        </div>
+        
+        <p>
+          See the project <a href="./hw/submitting.html">submission specification</a>.
+        </p>
+      </section>
 
-        </span>
+      <section class="schedule-section">
+        <h2>Class Schedule</h2>
+        <p style="color: red; font-weight: bold;">
+          TODO: Update all class dates below for Fall 2025
+        </p>
 
-        <span class="font-helvetica"></span>
-          <a href="hw/proj4/index.html"
-            >Project 4: (Auto)stitching and photo mosaics</a
-          ><br />
-          <img src="463_files/image028.jpg" height="175px" alt="stitching" />
-          <br />
-          See student submissions <a href="hw/proj4/results.html">here</a>.
-          <br/>
-          <br/>
-        </span>
-        <span class="font-helvetica"></span>
-          <a href="hw/proj5/index.html"
-            >Project 5: Fun with Diffusion Models</a
-          ><br />
-          <img src="463_files/proj5_index.png" height="auto" width="530" alt="diffusion" />
-          <br />
-        </span>
-        See student submissions <a href="hw/proj5/results.html">here</a>.
-        <br />
-        <div class="class-choice">
-          <strong>Class Choice Award: TBD!</strong>
-         </div>
-        <br />
-        <span class="font-helvetica"></span>
-          <a href="hw/fin_proj/index.html"
-            >Final Project</a
-          ><br/>
-          <img src="463_files/multifredo.jpg" height="auto" width="400" alt="final" />
-          <br />
-        </span>
-        <br />
-        <br />
-        <span class="font-helvetica">
-          See the project
-          <a href="./hw/submitting.html">submission specification</a>.
-        </span>
-        <br />
-        <br />
-      </p>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th class="table-header-cell table-cell-right-border" style="width: 10%">
+                  Class Date
+                </th>
+                <th class="table-header-cell" style="width: 35%">
+                  Topics
+                </th>
+                <th class="table-header-cell table-cell-left-border" style="width: 55%">
+                  Material
+                </th>
+              </tr>
+            </thead>
+            <tbody>
 
-      <!-- Textbook -->
-      <p>
-        <b><span class="font-helvetica">TEXTBOOK:</span></b>
-      </p>
-      <ul>
-        <li class="font-helvetica">
-          <a
-            href="https://mitpress.mit.edu/9780262048972/foundations-of-computer-vision/"
-            >Foundations of Computer Vision by Torralba, Isola, Freeman</a
-          >
-        </li>
-        <li class="font-helvetica">
-          <a href="http://szeliski.org/Book/"
-            >2nd edition of Computer Vision textbook by Rick Szeliski</a
-          >
-        </li>
-        <li class="font-helvetica">
-          If you need a refresher of linear algebra, please see
-          <a href="https://www.youtube.com/playlist?list=PL49CF3715CB9EF31D"
-            >Gilbert Strang's online class.</a
-          >
-        </li>
-      </ul>
+              <tr class="table-row-border">
+                <td class="table-cell table-cell-right-border text-center">
+                  Aug 28
+                </td>
+                <td class="table-cell">
+                  <strong>Introduction</strong><br />
+                  <img src="./463_files/image006.jpg" alt="Introduction lecture" style="max-width: 262px; height: 175px;" />
+                </td>
+                <td class="table-cell table-cell-left-border">
+                  <ul>
+                    <li>
+                      Slides:
+                      <!-- TODO: Update 2024 filenames to 2025 when lecture files are renamed -->
+                      <a href="./Lectures/Introduction2024.pptx">pptx</a>,
+                      <a href="./Lectures/Introduction2024.pdf">pdf</a>
+                    </li>
+                    <li>
+                      <a href="https://medium.com/@aaronhertzmann/how-photography-became-an-art-form-7b74da777c63">
+                        How Photography Became an Art Form
+                      </a>
+                      by
+                      <a href="https://www.dgp.toronto.edu/~hertzman/">
+                        Aaron Hertzmann
+                      </a>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
 
-      <!-- Class Notes -->
-      <p>
-        <b><span class="font-helvetica">CLASS NOTES</span></b
-        ><br />
-        <span class="font-helvetica">
-          The instructor is extremely grateful to a large number of researchers
-          for making their slides available for use in this course.
-          <a href="http://www.cs.washington.edu/homes/seitz/">Steve Seitz</a>
-          and
-          <a href="https://szeliski.org/">Rick Szeliski</a>
-          have been particularly kind in letting me use their wonderful lecture
-          notes. In addition, I would like to thank
-          <a href="http://www.debevec.org/">Paul Debevec</a>,
-          <a href="https://mitpress.mit.edu/author/stephen-e-palmer-2695/"
-            >Stephen Palmer</a
-          >, <a href="http://www.cs.cmu.edu/%7Eph/">Paul Heckbert</a>,
-          <a href="http://luthuli.cs.uiuc.edu/%7Edaf/">David Forsyth</a>,
-          <a href="http://www.cs.cornell.edu/%7Esrm/">Steve Marschner</a> and
-          others, as noted in the slides. The instructor gladly gives permission
-          to use and modify any of the slides for academic and research
-          purposes. However, please do also acknowledge the original sources
-          where appropriate.
-        </span>
-      </p>
-
-      <p class="MsoNormal">
-        <span class="font-helvetica">&nbsp;&nbsp;&nbsp;</span>
-      </p>
-
-      <p class="MsoNormal">
-        <b><span class="font-helvetica">CLASS SCHEDULE:</span></b><br />
-        <span style="color: red; font-weight: bold;">TODO: Update all class dates below for Fall 2025</span>
-      </p>
-
-      <table style="border-collapse: collapse">
-        <tbody>
-          <tr class="table-row-border">
-            <td
-              class="table-header-cell table-cell-right-border"
-              style="width: 8%"
-            >
-              <b><span class="font-helvetica">CLASS DATE</span></b>
-            </td>
-            <td class="table-header-cell" style="width: 62%">
-              <b><span class="font-helvetica">TOPICS</span></b>
-            </td>
-            <td
-              class="table-header-cell table-cell-left-border"
-              style="width: 28%"
-            >
-              <b><span class="font-helvetica">MATERIAL</span></b>
-            </td>
-          </tr>
-
-          <tr class="table-row-border">
-            <td
-              class="table-cell table-cell-right-border text-center"
-              style="width: 8%"
-            >
-              <span class="font-helvetica">Aug 28</span>
-            </td>
-            <td class="table-cell" style="width: 62%">
-              <b><span class="font-helvetica">Introduction</span></b
-              ><br />
-              <img src="./463_files/image006.jpg" class="image" alt="intro" />
-            </td>
-            <td class="table-cell table-cell-left-border" style="width: 28%">
-              <ul>
-                <li>
-                  Slides:
-                  <!-- TODO: Update 2024 filenames to 2025 when lecture files are renamed -->
-                  <a href="./Lectures/Introduction2024.pptx">pptx</a>,
-                  <a href="./Lectures/Introduction2024.pdf">pdf</a>
-                </li>
-                <li>
-                  <a
-                    href="https://medium.com/@aaronhertzmann/how-photography-became-an-art-form-7b74da777c63"
-                    >How Photography Became an Art Form</a
-                  >
-                  by
-                  <a href="https://www.dgp.toronto.edu/~hertzman/"
-                    >Aaron Hertzmann</a
-                  >
-                </li>
-              </ul>
-            </td>
-          </tr>
-
-          <tr class="table-row-border">
-            <td
-              class="table-cell table-cell-right-border text-center"
-              style="width: 8%"
-            >
-              <span class="font-helvetica">Sep 04</span>
-            </td>
-            <td class="table-cell" style="width: 62%">
-              <b
-                ><span class="font-helvetica"
-                  >Capturing Light... in man and machine</span
-                ></b
-              ><br />
-              <img
-                src="./463_files/image011.png"
-                class="image"
-                alt="capturing-light"
-              />
-            </td>
-            <td class="table-cell table-cell-left-border" style="width: 28%">
-              <ul>
-                <li>
-                  Slides:
-                  <a href="./Lectures/CapturingLight.pptx">pptx</a>,
-                  <a href="./Lectures/CapturingLight.pdf">pdf</a>
-                </li>
-                <li>
-                  Reading:
-                  <a href="https://youtu.be/6tTNgvAl1y4">Color in 5 minutes</a>
-                </li>
-                <li>
-                  Reading:
-                  <a href="https://youtu.be/1albYPL9Cfg"
-                    >Displays in 5 minutes</a
-                  >
-                </li>
-              </ul>
-            </td>
-          </tr>
+              <tr class="table-row-border">
+                <td class="table-cell table-cell-right-border text-center">
+                  Sep 04
+                </td>
+                <td class="table-cell">
+                  <strong>Capturing Light... in man and machine</strong><br />
+                  <img src="./463_files/image011.png" alt="Capturing light lecture" style="max-width: 262px; height: 175px;" />
+                </td>
+                <td class="table-cell table-cell-left-border">
+                  <ul>
+                    <li>
+                      Slides:
+                      <a href="./Lectures/CapturingLight.pptx">pptx</a>,
+                      <a href="./Lectures/CapturingLight.pdf">pdf</a>
+                    </li>
+                    <li>
+                      Reading:
+                      <a href="https://youtu.be/6tTNgvAl1y4">Color in 5 minutes</a>
+                    </li>
+                    <li>
+                      Reading:
+                      <a href="https://youtu.be/1albYPL9Cfg">Displays in 5 minutes</a>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
 
           <tr class="table-row-border">
             <td
@@ -1187,8 +993,56 @@
             </td>
           </tr> 
 
-        </tbody>
-      </table>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="course-info-section">
+        <h2>Textbook</h2>
+        <ul>
+          <li>
+            <a href="https://mitpress.mit.edu/9780262048972/foundations-of-computer-vision/">
+              Foundations of Computer Vision by Torralba, Isola, Freeman
+            </a>
+          </li>
+          <li>
+            <a href="http://szeliski.org/Book/">
+              2nd edition of Computer Vision textbook by Rick Szeliski
+            </a>
+          </li>
+          <li>
+            If you need a refresher of linear algebra, please see
+            <a href="https://www.youtube.com/playlist?list=PL49CF3715CB9EF31D">
+              Gilbert Strang's online class.
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="course-info-section">
+        <h2>Class Notes</h2>
+        <p>
+          The instructor is extremely grateful to a large number of researchers
+          for making their slides available for use in this course.
+          <a href="http://www.cs.washington.edu/homes/seitz/">Steve Seitz</a>
+          and
+          <a href="https://szeliski.org/">Rick Szeliski</a>
+          have been particularly kind in letting me use their wonderful lecture
+          notes. In addition, I would like to thank
+          <a href="http://www.debevec.org/">Paul Debevec</a>,
+          <a href="https://mitpress.mit.edu/author/stephen-e-palmer-2695/">
+            Stephen Palmer
+          </a>,
+          <a href="http://www.cs.cmu.edu/%7Eph/">Paul Heckbert</a>,
+          <a href="http://luthuli.cs.uiuc.edu/%7Edaf/">David Forsyth</a>,
+          <a href="http://www.cs.cornell.edu/%7Esrm/">Steve Marschner</a>
+          and others, as noted in the slides. The instructor gladly gives permission
+          to use and modify any of the slides for academic and research
+          purposes. However, please do also acknowledge the original sources
+          where appropriate.
+        </p>
+      </section>
 
       <p>
         <b><span class="font-helvetica">CAMERAS:</span></b

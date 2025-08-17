@@ -1,85 +1,385 @@
-.fredo {
-  font-family: "Arial", sans-serif;
-  font-size: 10pt;
+/* ================================
+   CS180/280A Course Website Styles
+   Modern CSS with UC Berkeley Branding
+   ================================ */
+
+/* CSS Custom Properties - UC Berkeley Colors */
+:root {
+  --berkeley-blue: #003262;
+  --california-gold: #FDB515;
+  --pacific-teal: #00B5D0;
+  --founders-rock: #3B7EA1;
+  --white: #ffffff;
+  --light-gray: #f8f9fa;
+  --medium-gray: #6c757d;
+  --dark-gray: #343a40;
+  --border-gray: #dee2e6;
+  
+  /* Typography Scale */
+  --font-size-xs: 0.75rem;   /* 12px */
+  --font-size-sm: 0.875rem;  /* 14px */
+  --font-size-base: 1rem;    /* 16px */
+  --font-size-lg: 1.125rem;  /* 18px */
+  --font-size-xl: 1.25rem;   /* 20px */
+  --font-size-2xl: 1.5rem;   /* 24px */
+  --font-size-3xl: 1.875rem; /* 30px */
+  --font-size-4xl: 2.25rem;  /* 36px */
+  
+  /* Spacing Scale */
+  --space-xs: 0.25rem;  /* 4px */
+  --space-sm: 0.5rem;   /* 8px */
+  --space-md: 1rem;     /* 16px */
+  --space-lg: 1.5rem;   /* 24px */
+  --space-xl: 2rem;     /* 32px */
+  --space-2xl: 3rem;    /* 48px */
+  --space-3xl: 4rem;    /* 64px */
+  
+  /* Layout */
+  --max-width: 1200px;
+  --border-radius: 0.375rem;
+  --box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
-h1 {
-  margin-top: 12pt;
-  margin-right: 0;
-  margin-bottom: 3pt;
-  margin-left: 0;
-  page-break-after: avoid;
-  font-size: 16pt;
-  font-family: "Arial", sans-serif;
-  font-weight: bold;
+/* Reset and Base Styles */
+* {
+  box-sizing: border-box;
 }
 
-h2 {
-  margin-top: 12pt;
-  margin-right: 0;
-  margin-bottom: 3pt;
-  margin-left: 0;
-  page-break-after: avoid;
-  font-size: 14pt;
-  font-family: "Arial", sans-serif;
-  font-weight: bold;
-  font-style: italic;
+html {
+  font-size: 16px;
+  line-height: 1.6;
 }
 
-a:link,
-span.MsoHyperlink,
-a:visited,
-span.MsoHyperlinkFollowed {
-  color: blue;
-  text-decoration: underline;
-}
-
-p {
-  margin-right: 0;
-  margin-left: 0;
-  font-size: 12pt;
-  font-family: "Times New Roman", serif;
-}
-
-p.MsoNormal,
-li.MsoNormal,
-div.MsoNormal {
-  margin: 0in;
-  margin-bottom: 0.0001pt;
-  font-size: 12pt;
-  font-family: "Times New Roman", serif;
-}
-
-.table-container {
-  border-collapse: collapse;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  color: var(--dark-gray);
+  background-color: var(--white);
   margin: 0;
   padding: 0;
 }
 
-.table-cell {
-  padding: 2.65pt;
-  vertical-align: top;
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+  color: var(--berkeley-blue);
 }
 
-.logo-img {
-  font-size: 10pt;
+h1 {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: var(--font-size-2xl);
+}
+
+h3 {
+  font-size: var(--font-size-xl);
+}
+
+h4 {
+  font-size: var(--font-size-lg);
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+  line-height: 1.6;
+}
+
+/* Links */
+a {
+  color: var(--berkeley-blue);
+  text-decoration: underline;
+  text-decoration-color: var(--california-gold);
+  text-underline-offset: 2px;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--california-gold);
+  text-decoration-color: var(--berkeley-blue);
+}
+
+a:visited {
+  color: var(--founders-rock);
+}
+
+/* Lists */
+ul, ol {
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+  padding-left: var(--space-lg);
+}
+
+ul {
+  list-style-type: disc;
+}
+
+li {
+  margin-bottom: var(--space-xs);
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Schedule table images - standardized size */
+.schedule-section .table-cell img,
+.image {
+  max-width: 200px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+  margin: var(--space-sm) 0;
+}
+
+/* Layout Components */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
 }
 
 .header {
-  font-size: 14pt;
-  font-family: "Helvetica", sans-serif;
+  background: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
+  border-bottom: 3px solid var(--berkeley-blue);
+  color: var(--berkeley-blue);
+  padding: var(--space-xl) 0;
 }
 
-.division {
-  font-size: 11pt;
-  font-family: "Helvetica", sans-serif;
+.header-content {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-lg);
+  align-items: center;
 }
 
-.university {
-  font-size: 11pt;
-  font-family: "Helvetica", sans-serif;
+.logo {
+  width: 75px;
+  height: 75px;
 }
 
-.university-link {
-  font-size: 10pt;
+.course-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  margin-bottom: var(--space-sm);
+  color: var(--berkeley-blue);
+}
+
+.course-info {
+  font-size: var(--font-size-base);
+  color: var(--medium-gray);
+}
+
+.course-info a {
+  color: var(--medium-gray);
+  text-decoration: none;
+}
+
+.course-info a:hover {
+  text-decoration: underline;
+}
+
+/* Tables */
+.table-container {
+  overflow-x: auto;
+  margin: var(--space-lg) 0;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--white);
+  table-layout: fixed; /* Forces table to respect column widths */
+}
+
+.table-header-cell {
+  background-color: var(--berkeley-blue);
+  color: var(--white);
+  padding: var(--space-md);
+  text-align: center;
+  font-weight: 600;
+  border: 1px solid var(--berkeley-blue);
+}
+
+.table-cell {
+  background-color: var(--light-gray);
+  padding: var(--space-md);
+  vertical-align: top;
+  border: 1px solid var(--border-gray);
+}
+
+.table-cell-left-border {
+  border-left: 2px solid var(--berkeley-blue);
+}
+
+.table-cell-right-border {
+  border-right: 2px solid var(--berkeley-blue);
+}
+
+.table-row-border {
+  border-top: 1px solid var(--border-gray);
+  border-bottom: 1px solid var(--border-gray);
+}
+
+/* Class Choice Awards */
+.class-choice {
+  font-weight: 600;
+  margin: var(--space-sm) 0 var(--space-md) 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.class-choice img {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Utility Classes */
+.text-center {
+  text-align: center;
+}
+
+.text-bold {
+  font-weight: 700;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Legacy Support - Gradually remove these */
+.font-helvetica,
+.font-helvetica-bold,
+.font-helvetica-large,
+.font-helvetica-medium {
+  font-family: inherit;
+}
+
+.font-helvetica {
+  font-size: var(--font-size-sm);
+}
+
+.font-helvetica-bold {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.font-helvetica-large {
+  font-size: var(--font-size-lg);
+}
+
+.font-helvetica-medium {
+  font-size: var(--font-size-base);
+}
+
+/* Remove MS Word artifacts - mark for removal */
+.MsoNormal,
+.MsoNormalTable,
+.WordSection1 {
+  /* These should be replaced with semantic HTML */
+}
+
+/* Course Info Section */
+.course-info-section {
+  margin: var(--space-2xl) 0;
+  padding: var(--space-xl);
+  background-color: var(--light-gray);
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--berkeley-blue);
+}
+
+.course-info-section h2 {
+  margin-top: 0;
+  color: var(--berkeley-blue);
+}
+
+/* Project Sections */
+.projects-section {
+  margin: var(--space-2xl) 0;
+}
+
+.project-item {
+  margin: var(--space-2xl) 0;
+  padding: var(--space-xl);
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  border-left: 4px solid var(--california-gold);
+}
+
+.project-item h3 {
+  margin-top: 0;
+  color: var(--berkeley-blue);
+}
+
+.project-item img {
+  max-width: 300px;
+  height: auto;
+  margin: var(--space-md) 0;
+  border-radius: var(--border-radius);
+}
+
+/* Schedule Section */
+.schedule-section {
+  margin: var(--space-2xl) 0;
+}
+
+.schedule-section h2 {
+  color: var(--berkeley-blue);
+  margin-bottom: var(--space-lg);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  :root {
+    --font-size-3xl: 1.5rem;   /* Smaller on mobile */
+    --font-size-2xl: 1.25rem;
+  }
+  
+  .container {
+    padding: 0 var(--space-sm);
+  }
+  
+  .header-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--space-md);
+  }
+  
+  .course-info-section,
+  .project-item {
+    padding: var(--space-md);
+    margin: var(--space-lg) 0;
+  }
+  
+  .table-container {
+    margin: var(--space-md) -var(--space-sm);
+  }
+  
+  .table-cell,
+  .table-header-cell {
+    padding: var(--space-sm);
+    font-size: var(--font-size-sm);
+  }
+  
+  .project-item img {
+    max-width: 100%;
+  }
 }
