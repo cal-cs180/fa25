@@ -1,4 +1,5 @@
 #463_files/
+CLAUDE.md
 # Lectures/
 hw_old/
 data/
@@ -126,6 +127,7 @@ venv.bak/
 .vsocde
 
 # upload
+# TODO: Update fa24 to fa25 when path is ready
 /home/ff/cs180/public_html/fa24/upload/
 ./upload/
 
