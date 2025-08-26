@@ -121,8 +121,7 @@
   <p>
     Some starter code is available in
     <!-- TODO: Update fa24 to fa25 when URLs are ready -->
-    <a href="https://inst.eecs.berkeley.edu/~cs180/fa24/hw/proj1/data/colorize_skel.py">Python</a> and
-    <a href="https://inst.eecs.berkeley.edu/~cs180/fa24/hw/proj1/data/colorize_skel.m">MATLAB</a>; do not feel obligated
+    <a href="https://inst.eecs.berkeley.edu/~cs180/fa24/hw/proj1/data/colorize_skel.py">Python</a>; do not feel obligated
     to use it.
     We will assume that a simple x,y translation model is sufficient for
     proper alignment. However, the full-size glass plate images (i.e. <code>.tif</code> files) are very
@@ -175,14 +174,14 @@
     processing is done sequentially starting from the coarsest scale (smallest
     image) and going down the pyramid, updating your estimate as you go. It is
     very easy to implement by adding recursive calls to your original
-    single-scale implementation. Do not use MATLAB's impyramid function but
-    you can use imresize.
+    single-scale implementation. You should implement the pyramid
+    functionality yourself using appropriate downsampling techniques.
   </p>
   <p>
     Your job will be to implement an algorithm that, given a 3-channel image,
     produces a color image as output. Implement a simple single-scale version
     first, using for loops, searching over a user-specified window of
-    displacements. The above directory has skeleton Python/MATLAB code that
+    displacements. The above directory has skeleton Python code that
     will help you get started and you should pick one of the smaller <code>.jpg</code>
     images in the directory to test this version of the code. Next, add a
     coarse-to-fine pyramid speedup to handle large images like the <code>.tif</code> ones
@@ -326,16 +325,11 @@
       optimize the code.
     </li>
     <li>
-      A lot of the suggested MATLAB code will be in the Image Processing
-      Toolbox.
-    </li>
-    <li>
       Try to vectorize/parallelize your code, and avoid using too many FOR
       loops. (See more details for
       <a href="https://wiki.python.org/moin/PythonSpeed/PerformanceTips#Loops">Python</a>
       and
-      <a
-        href="https://www.mathworks.com/help/matlab/matlab_prog/vectorization.html?requestedDomain=www.mathworks.com">MATLAB</a>)
+      <a href="https://numpy.org/doc/stable/user/basics.broadcasting.html">NumPy Broadcasting</a>)
     </li>
     <li>
       For all projects, don't get bogged down tweaking input parameters. Most,
@@ -350,7 +344,7 @@
       to convert all the formats to the same scale
       (see im2double and im2uint8).
     </li>
-    <li>Shifting a matrix is easy to do in MATLAB by using circshift or with np.roll in Python.</li>
+    <li>Shifting a matrix is easy to do in Python with np.roll.</li>
     <li>
       The borders of the images will probably hurt your results, try computing
       your metric on the internal pixels only.

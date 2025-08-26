@@ -102,8 +102,7 @@ frequency (smooth) part of the signal can be seen. By blending the high frequenc
 <h3>Details</h3>
 
 <!-- TODO: Update fa24 to fa25 when URLs are ready -->
-<p class="text"><a href="https://inst.eecs.berkeley.edu/~cs180/fa24/hw/proj2/hybrid.zip">Here</a>, we have included two sample images (of Derek and his former cat Nutmeg) and  some matlab
-starter code that can be used to load two images and align them. <a href="https://inst.eecs.berkeley.edu/~cs180/fa24/hw/proj2/hybrid_python.zip">Here</a> is the python version. The alignment is important because it affects
+<p class="text"><a href="https://inst.eecs.berkeley.edu/~cs180/fa24/hw/proj2/hybrid_python.zip">Here</a>, we have included two sample images (of Derek and his former cat Nutmeg) and starter code that can be used to load two images and align them. The alignment is important because it affects
 the perceptual grouping (read the paper for details).</p>
 
 <ol>
@@ -117,9 +116,8 @@ the perceptual grouping (read the paper for details).</p>
     The <a href="http://en.wikipedia.org/wiki/Cutoff_frequency">cutoff-frequency</a> of
     each filter should be chosen with some experimentation.</li>
   <li>For your favorite result, you should also illustrate the process through frequency analysis.  Show the log magnitude of the Fourier transform of the two input images, the filtered images, and the
-    hybrid image.  In MATLAB, you can compute and display the 2D Fourier transform with
-    with:
-  <span style="font-size:11.0pt;font-family:Courier New">imagesc(log(abs(fftshift(fft2(gray_image)))))</span>and in Python it's <span style="font-size:11.0pt;font-family:Courier New">plt.imshow(np.log(np.abs(np.fft.fftshift(np.fft.fft2(gray_image)))))</span> </li>
+    hybrid image.  In Python you can compute and display the 2D Fourier transform with:
+  <span style="font-size:11.0pt;font-family:Courier New">plt.imshow(np.log(np.abs(np.fft.fftshift(np.fft.fft2(gray_image)))))</span> </li>
   <li>Try creating 2-3 hybrid images (change of expression,
     morph between different objects, change over time, etc.). Show the input image and hybrid result per example. (No need to show the intermediate results as in step 2.)
     </li>
@@ -154,7 +152,7 @@ low-frequency component, or both? <b>(0.07 cookie points)</b>
     <div align="left"> Implement a Gaussian and a Laplacian <strong>stack</strong>. The different between a stack and a pyramid is that in each level of the pyramid the image is downsampled, so that the result gets smaller and smaller.
       In a stack the images are never downsampled so the results are all the same dimension as the original image, and can all be saved in one 3D matrix (if the original image was a grayscale image).
       To create the successive levels of the Gaussian Stack, just apply the Gaussian filter at each level, but do not subsample.
-    In this way we will get a stack that behaves similarly to a pyramid that was downsampled to half its size at each level. If you would rather work with pyramids, you may implement pyramids other than stacks. However, in any case, you are <strong>NOT</strong> allowed to use matlab's<span style="font-family: Courier New; font-size: 11.0pt"> impyramid() </span>and its equivalents in this project. You must implement your stacks from scratch!</div>
+    In this way we will get a stack that behaves similarly to a pyramid that was downsampled to half its size at each level. If you would rather work with pyramids, you may implement pyramids other than stacks. However, you are <strong>NOT</strong> allowed to use built-in pyramid functions and must implement your stacks from scratch!</div>
   </li>
   <li>Apply your Gaussian and Laplacian stacks to the Oraple and recreate the outcomes of Figure 3.42 in <a href="https://www.dropbox.com/s/bzt69u4azxyfpjo/SzeliskiBookDraft_20210828.pdf?dl=0">Szelski (Ed 2)</a> page 167, as you can see in the image above. Review the 1983 <a href="http://persci.mit.edu/pub_pdfs/spline83.pdf">paper</a> for more information.</li>
 </ol>
