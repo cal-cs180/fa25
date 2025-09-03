@@ -60,18 +60,16 @@
     li {
       margin: 0;
     }
-
   </style>
 </head>
 
 <body>
   <header>
     <h1>
-      <img src="./proj1_files/ucbseal_139_540.png" alt="berkeley logo"
-        height="75" width="75">
+      <img src="./proj1_files/ucbseal_139_540.png" alt="berkeley logo" height="75" width="75">
       Programming Project #1 (<code>proj1</code>)<br>
       <!-- TODO: Update fa24 to fa25 when URLs are ready -->
-      <a href="https://inst.eecs.berkeley.edu/~cs180/fa24/">CS180: Intro to Computer Vision and Computational
+      <a href="../../">CS180: Intro to Computer Vision and Computational
         Photography</a>
     </h1>
   </header>
@@ -81,7 +79,7 @@
     <i>Colorizing the
       <a href="https://www.loc.gov/collections/prokudin-gorskii/">Prokudin-Gorskii</a>
       photo collection</i><br>
-    <b style="color:#9E0000">Due Date: TBD</b>
+    <b style="color:#9E0000">Due Date: September 11, 2025 at 11:59 PM</b>
   </h2>
   <h3>Background</h3>
   <p>
@@ -115,13 +113,15 @@
     produce a color image with as few visual artifacts as possible. In order
     to do this, you will need to extract the three color channel images, place
     them on top of each other, and align them so that they form a single RGB
-    color image. <a href="http://www.loc.gov/exhibits/empire/making.html">This</a> is a cool explanation on how the Library of Congress composed their
+    color image. <a href="http://www.loc.gov/exhibits/empire/making.html">This</a> is a cool explanation on how the
+    Library of Congress composed their
     color images.
   </p>
   <p>
     Some starter code is available in
     <!-- TODO: Update fa24 to fa25 when URLs are ready -->
-    <a href="https://inst.eecs.berkeley.edu/~cs180/fa24/hw/proj1/data/colorize_skel.py">Python</a>; do not feel obligated
+    <a href="https://inst.eecs.berkeley.edu/~cs180/fa24/hw/proj1/data/colorize_skel.py">Python</a>; do not feel
+    obligated
     to use it.
     We will assume that a simple x,y translation model is sufficient for
     proper alignment. However, the full-size glass plate images (i.e. <code>.tif</code> files) are very
@@ -135,11 +135,8 @@
   <img src="./proj1_files/image003.jpg" alt="example negative" style="float: right">
   <p>
     A few of the digitized glass plate images (both hi-res and low-res
-    versions) will be placed in the following directory (note that the filter
-    order from top to bottom is BGR, not RGB!):
-    <!-- TODO: Update fa24 to fa25 when URLs are ready -->
-    <a href="https://inst.eecs.berkeley.edu/~cs180/fa24/hw/proj1/data">data/</a> (download all at
-    <a href="https://inst.eecs.berkeley.edu/~cs180/fa24/hw/proj1/data.zip">data.zip</a>).
+    versions) will be placed in the following zip file (note that the filter
+    order from top to bottom is BGR, not RGB!): <a href="https://drive.google.com/file/d/1OTNsYYeJ-Pf_lsWBgOxPqkpExcAEpdTA/view?usp=sharing" target="_blank">data.zip</a> (<a href="./gallery/" target="_blank">online gallery for preview</a>).
 
     Your program will take a glass plate
     image as input and produce a single color image as output. The program
@@ -187,7 +184,7 @@
     coarse-to-fine pyramid speedup to handle large images like the <code>.tif</code> ones
     provided in the directory.
   </p>
-  <h3>Bells & Whistles (Extra Credit)</h3>
+  <h3>Bells & Whistles (Extra for CS180, Mandatory for CS280A)</h3>
   <p>
     Although the color images resulting from this automatic procedure will
     often look strikingly real, they are still a far cry from the manually
@@ -195,30 +192,23 @@
     photographers. Of course, each such photograph takes days of painstaking
     Photoshop work, adjusting the color levels, removing the blemishes, adding
     contrast, etc. Can we make some of these adjustments automatically,
-    without the human in the loop? Feel free to come up with your own
-    approaches or talk to me about your ideas. There is no right answer here
-    -- just try out things and see what works. For example, the borders of the
-    photograph will have strange colors since the three channels won't exactly
-    align. See if you can devise an automatic way of cropping the border to
-    get rid of the bad stuff. One possible idea is that the information in the
-    good parts of the image generally agrees across the color channels,
-    whereas at borders it does not.
+    without the human in the loop?
   </p>
-  <p>Here are some ideas, but we will give credit for other clever ideas:</p>
+  <p>Bells and whistles that CS280A students <strong>need</strong> to implement, but CS180 students are welcome to do for a bragging right:</p>
   <ul>
     <li>
-      Automatic cropping. Remove white, black or other color borders. Don't
+      <strong>Automatic cropping.</strong> Remove white, black or other color borders. Don't
       just crop a predefined margin off of each side -- actually try to detect
       the borders or the edge between the border and the image.
     </li>
     <li>
-      Automatic contrasting. It is usually safe to rescale image intensities
+      <strong>Automatic contrasting.</strong> It is usually safe to rescale image intensities
       such that the darkest pixel is zero (on its darkest color channel) and
       the brightest pixel is 1 (on its brightest color channel). More drastic
       or non-linear mappings may improve perceived image quality.
     </li>
     <li>
-      Automatic white balance. This involves two problems -- 1) estimating the
+      <strong>Automatic white balance.</strong> This involves two problems -- 1) estimating the
       illuminant and 2) manipulating the colors to counteract the illuminant
       and simulate a neutral illuminant. Step 1 is difficult in general, while
       step 2 is simple (see the Wikipedia page on
@@ -229,24 +219,36 @@
       those to gray or white.
     </li>
     <li>
-      Better color mapping. There is no reason to assume (as we have) that the
+      <strong>Better color mapping.</strong> There is no reason to assume (as we have) that the
       red, green, and blue lenses used by Produkin-Gorskii correspond directly
       to the R, G, and B channels in RGB color space. Try to find a mapping
       that produces more realistic colors (and perhaps makes the automatic
       white balancing less necessary).
     </li>
     <li>
-      Better features. Instead of aligning based on RGB similarity, try using
+      <strong>Better features.</strong> Instead of aligning based on RGB similarity, try using
       gradients or edges.
     </li>
+  </ul>
+
+  <p>
+    (Optional) <strong>Feel free to come up with your own
+    approaches.</strong> There is no right answer here
+    -- just try out things and see what works. For example, the borders of the
+    photograph will have strange colors since the three channels won't exactly
+    align. See if you can devise an automatic way of cropping the border to
+    get rid of the bad stuff. One possible idea is that the information in the
+    good parts of the image generally agrees across the color channels,
+    whereas at borders it does not.</p>
+  <ul>
     <li>
-      Better transformations. Instead of searching for the best x and y
+      <strong>Better transformations.</strong> Instead of searching for the best x and y
       translation, additionally search over small scale changes and rotations.
       Adding two more dimensions to your search will slow things down, but the
       same course to fine progression should help alleviate this.
     </li>
     <li>
-      Aligning and processing data from other sources. In many domains, such
+      <strong>Aligning and processing data from other sources.</strong> In many domains, such
       as astronomy, image data is still captured one channel at a time. Often
       the channels don't correspond to visible light, but NASA artists stack
       these channels together to create false color images. For example, this
@@ -272,7 +274,7 @@
   <p>
     For this project you must turn in both your code and a project webpage as
     <!-- TODO: Update fa24 to fa25 when URLs are ready -->
-    <a href="https://inst.eecs.berkeley.edu/~cs180/fa24/hw/submitting.html">described here</a>.
+    <a href="../submitting.html">described here</a>.
   </p>
   <ul>
     <li>
@@ -284,7 +286,7 @@
     <li>
       The result of your algorithm on <b>all</b> of our
       <!-- TODO: Update fa24 to fa25 when URLs are ready -->
-      <a href="https://inst.eecs.berkeley.edu/~cs180/fa24/hw/proj1/data">example images</a>. List the offsets you
+      <a href="https://drive.google.com/file/d/1OTNsYYeJ-Pf_lsWBgOxPqkpExcAEpdTA/view?usp=sharing">example images</a>. List the offsets you
       calculated.
       <b>Do not upload the large <code>.tif</code> images.</b> Your web page should
       only display compressed images (e.g. jpg or png or gif if you want to
@@ -303,6 +305,10 @@
       Describe any bells and whistles you implemented. For maximum credit,
       show before and after images.
     </li>
+    <li>
+      <strong>Submit your webpage URL to the class gallery via <a href="https://forms.gle/u4YEUGMo79swCcwt9" target="_blank">Google Form</a>.</strong>
+      
+    </li>
   </ul>
 
   <h3>Final Advice</h3>
@@ -316,7 +322,7 @@
       and displaying images: e.g. imread, imresize, cirshift.). In particular,
       you are not allowed to use high level functions, such as these for
       constructing Laplacian/Gaussian pyramids, automatically aligning images,
-      etc. If in doubt, ask on piazza.
+      etc. If in doubt, ask on Ed.
     </li>
 
     <li>
@@ -355,16 +361,45 @@
   </ul>
   <br>
   <p>This assignment will be graded out of <b>100</b> points, as follows:</p>
-  <ul>
-    <li>
-      <b>60 points</b> for a single-scale implementation with successful
-      results on low-res images.
-    </li>
-    <li>
-      <b>40 points</b> for a multiscale pyramid version that works on the
-      large images.
-    </li>
-  </ul>
+  <h3>Grading Rubric</h3>
+  <div style="display: flex; justify-content: space-between;">
+    <div style="width: 48%;">
+      <h4>CS180</h4>
+      <ul>
+        <li>
+          <b>60 points</b> for a single-scale implementation with successful
+          results on low-res images.
+        </li>
+        <li>
+          <b>40 points</b> for a multiscale pyramid version that works on the
+          large images.
+        </li>
+      </ul>
+    </div>
+    <div style="width: 48%;">
+      <h4>CS280A</h4>
+      <ul>
+        <li>
+          <b>40 points</b> for a single-scale implementation with successful
+          results on low-res images.
+        </li>
+        <li>
+          <b>30 points</b> for a multiscale pyramid version that works on the
+          large images.
+        </li>
+        <li>
+          <b>30 points</b> for implementing the mandatory bells and whistles:
+          <ul>
+            <li>Automatic cropping</li>
+            <li>Automatic contrasting</li>
+            <li>Automatic white balance</li>
+            <li>Better color mapping</li>
+            <li>Better features</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
 
 
 </body>
