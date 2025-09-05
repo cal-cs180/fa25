@@ -336,6 +336,26 @@ table {
   border-radius: var(--border-radius);
 }
 
+/* Announcement Banner */
+.announcement {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  margin: var(--space-md) 0;
+  background: linear-gradient(135deg, #fffbea 0%, #fff3c4 100%);
+  border-left: 4px solid var(--california-gold);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  color: var(--dark-gray);
+  font-weight: 500;
+}
+
+.announcement .announcement-icon {
+  font-size: var(--font-size-xl);
+  line-height: 1;
+}
+
 /* Schedule Section */
 .schedule-section {
   margin: var(--space-2xl) 0;
