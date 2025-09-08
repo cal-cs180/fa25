@@ -264,6 +264,65 @@ table {
   display: none;
 }
 
+/* Badges & Notes */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0 0.5rem;
+  height: 1.25rem;
+  border-radius: 9999px;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  vertical-align: middle;
+  line-height: 1.25rem;
+}
+
+.badge-new {
+  background-color: rgba(253, 181, 21, 0.18); /* California Gold tint */
+  color: var(--berkeley-blue);
+  border: 1px solid var(--california-gold);
+}
+
+.badge-updated {
+  background-color: rgba(0, 181, 208, 0.15); /* Pacific Teal tint */
+  color: var(--berkeley-blue);
+  border: 1px solid var(--pacific-teal);
+}
+
+.badge-deprecated {
+  background: linear-gradient(135deg, #fff5f5 0%, #ffe3e3 100%);
+  color: #842029;
+  border: 1px solid #f5c2c7;
+}
+
+.table-cell .badge {
+  margin-left: 0.35rem;
+}
+
+.meta {
+  color: var(--medium-gray);
+  font-size: var(--font-size-sm);
+  margin-left: 0.35rem;
+}
+
+.is-deprecated .table-cell {
+  color: var(--medium-gray);
+}
+
+.is-deprecated s {
+  color: inherit;
+  text-decoration-color: #c9c9c9;
+}
+
+/* Make struck text appear lighter in course info (e.g., office hours changes) */
+.course-info-section s {
+  color: var(--medium-gray);
+  text-decoration-color: #c9c9c9;
+}
+
 /* Legacy Support - Gradually remove these */
 .font-helvetica,
 .font-helvetica-bold,
@@ -289,12 +348,7 @@ table {
   font-size: var(--font-size-base);
 }
 
-/* Remove MS Word artifacts - mark for removal */
-.MsoNormal,
-.MsoNormalTable,
-.WordSection1 {
-  /* These should be replaced with semantic HTML */
-}
+/* Removed legacy MS Word artifact selectors (unused, empty ruleset) */
 
 /* Course Info Section */
 .course-info-section {
