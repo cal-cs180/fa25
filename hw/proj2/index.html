@@ -28,6 +28,12 @@
 <p class="text">
 
 In this part, we will build intuitions about 2D convolutions and filtering.
+
+<br>We will begin by using the humble finite difference as our filter in the x and y directions. <br>
+<br>
+<img style="max-width:30%;" src="./files/diff_op.png" alt="diff_op">
+<br>
+
 </p>
 
 <h3>Part 1.1: Convolutions from Scratch!</h3>
@@ -37,9 +43,10 @@ In this part, we will build intuitions about 2D convolutions and filtering.
 First, let's recap what a convolution is. Implement it with four for loops, then two for loops. Compare it with a built-in convolution function 
 <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.convolve2d.html"><code>scipy.signal.convolve2d</code></a>!
 
-Then, take a picture of yourself, write out a 9x9 box filter, and convolve the picture with the box filter.
+Then, take a picture of yourself, write out a 9x9 box filter, and convolve the picture with the box filter. 
+Do it with the finite difference operators <b>D<sub>x</sub></b> and <b>D<sub>y</sub></b> as well.
 
-Include the code snippets in the website as well.
+Include the code snippets in the website!
 
 <br>
 <br>
@@ -50,13 +57,6 @@ What can you use for this section? This section is meant to be done with <code>n
 <h3>Part 1.2: Finite Difference Operator</h3>
 
   <p class="text">
-
-<br>We will begin by using the humble finite difference as our filter in the x and y directions. <br>
-
-
-<img style="max-width:30%;" src="./files/diff_op.png" alt="diff_op">
-
-<br>
 
 First, show the partial derivative in x and y of the <a href="https://inst.eecs.berkeley.edu/~cs180/fa24/hw/proj2/cameraman.png">cameraman image</a> by convolving the image with finite difference operators <b>D_x</b> and <b> D_y </b>. Now compute and show the gradient magnitude image. To turn this into an edge image, lets binarize the gradient magnitude image by picking the appropriate threshold (trying to suppress the noise while showing all the real edges; it will take you a few tries to find the right threshold; This threshold is meant to be assessed qualitatively). You can use <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.convolve2d.html"><code>scipy.signal.convolve2d</code></a>.
 
