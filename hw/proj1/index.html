@@ -48,6 +48,11 @@
       margin: 1em 0 0 0;
     }
 
+    /* Ensure h5 is at least as large as paragraph text */
+    h5 {
+      font-size: 1em;
+    }
+
     p {
       margin: 0 1em 0.5em 1em;
     }
@@ -59,6 +64,32 @@
 
     li {
       margin: 0;
+    }
+
+    /* Rubric layout styles (scoped to this page) */
+    .rubric {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .rubric-col {
+      width: 48%;
+      min-width: 320px;
+    }
+
+    .rubric-indent {
+      margin-left: 0.5rem;
+    }
+
+    .rubric-note {
+      font-size: 0.95em;
+    }
+
+    .rubric h5 {
+      margin: 0.25em 0;
     }
   </style>
 </head>
@@ -267,135 +298,157 @@
 
   <h3>Deliverables</h3>
   <p>
-    For this project you must turn in both your code and a project webpage as
+    For this project, you must submit both your code and a project webpage as
     <!-- TODO: Update fa24 to fa25 when URLs are ready -->
-    <a href="../submitting.html">described here</a>.
+    <a href="../submitting.html">described here</a>. 
+  </p>
+  <p>
+    The project webpage is your presentation of your work. Imagine that you are writing a blog post about your project for your friends. A good blog post is easy to read and follow, well organized, and visually appealing.
+  </p>
+  <p>
+    When you introduce new concepts or tricks that improve your results, explain them along the way and show the improved results of your algorithm on example images.
+  </p>
+  <p>
+    Below are the specific deliverables to keep in mind when writing your project webpage.
   </p>
   <ul>
     <li>
-      Text giving a brief overview of the project, and text describing your
-      approach. If you ran into problems on images, describe how you tried
-      to solve them. The website does not need to be pretty; you just need
-      to explain what you did.
-    </li>
-    <li>
-      The result of your algorithm on <b>all</b> of our
+      The results of your algorithm (using NCC/L2 norm metrics) on <b>all</b> of our
       <!-- TODO: Update fa24 to fa25 when URLs are ready -->
-      <a href="https://drive.google.com/file/d/1OTNsYYeJ-Pf_lsWBgOxPqkpExcAEpdTA/view?usp=sharing">example images</a>. List the offsets you
-      calculated.
-      <b>Do not upload the large <code>.tif</code> images.</b> Your web page should
-      only display compressed images (e.g. jpg or png or gif if you want to
-      animate something).
+      <a href="https://drive.google.com/file/d/1OTNsYYeJ-Pf_lsWBgOxPqkpExcAEpdTA/view?usp=sharing">example images</a>. List the offsets you computed.
     </li>
     <li>
-      The result of your algorithm on a few examples of your own choosing,
-      downloaded from the <a href="https://www.loc.gov/collections/prokudin-gorskii/?st=grid">Prokudin-Gorskii
-        collection</a>.
+      The results of your algorithm (using NCC/L2 norm metrics) on a few examples of your choosing,
+      downloaded from the <a href="https://www.loc.gov/collections/prokudin-gorskii/?st=grid">Prokudin-Gorskii collection</a>.
     </li>
     <li>
-      If your algorithm failed to align any image, provide a brief
-      explanation of why.
+      If your algorithm failed to align any image, provide a brief explanation of why.
     </li>
     <li>
-      Describe any bells and whistles you implemented. For maximum credit,
-      show before and after images.
+      Describe any bells and whistles you implemented. For maximum credit, show before-and-after images.
     </li>
     <li>
       <strong>Submit your webpage URL to the class gallery via <a href="https://forms.gle/u4YEUGMo79swCcwt9" target="_blank">Google Form</a>.</strong>
-      
+      Also include this URL in your Gradescope submission.
     </li>
   </ul>
+  <p>
+    <b>Important:</b> Images are for the project webpage only. Do <u>not</u> upload image files (e.g., <code>.jpg</code>, <code>.png</code>, <code>.tif</code>) to Gradescope. This keeps submissions small and avoids hitting Gradescope's 100&nbsp;MB upload limit, which large image sets can easily exceed.
+  </p>
 
   <h3>Final Advice</h3>
   <ul>
-    <li>
-      You will be constructing an image pyramid in project 2 too, so writing nice reusable code will pay dividends.
+    <li>You’ll build image pyramids again in Project 2—write clean, reusable code.</li>
+    <li>Implement almost everything from scratch. It’s fine to use functions for reading, writing, resizing, shifting, and displaying images (e.g., imread, imresize, circshift), but don’t use high‑level functions for Laplacian/Gaussian pyramids, automatic alignment, etc. If in doubt, ask on Ed.</li>
+    <li>Aim for under 1 minute per image. If it takes hours, optimize.</li>
+    <li>Vectorize/parallelize and avoid many for‑loops. See Python performance tips and NumPy broadcasting:
+      <a href="https://wiki.python.org/moin/PythonSpeed/PerformanceTips#Loops">Python</a> ·
+      <a href="https://numpy.org/doc/stable/user/basics.broadcasting.html">NumPy Broadcasting</a>.
     </li>
-    <li>
-      For the main assignment, you need to implement almost everything from
-      scratch (except the functions for reading, writing, resizing, shifting
-      and displaying images: e.g. imread, imresize, cirshift.). In particular,
-      you are not allowed to use high level functions, such as these for
-      constructing Laplacian/Gaussian pyramids, automatically aligning images,
-      etc. If in doubt, ask on Ed.
-    </li>
-
-    <li>
-      The average running time is expected to be less than 1 minute per image.
-      If it takes hours for your program to finish, you should further
-      optimize the code.
-    </li>
-    <li>
-      Try to vectorize/parallelize your code, and avoid using too many FOR
-      loops. (See more details for
-      <a href="https://wiki.python.org/moin/PythonSpeed/PerformanceTips#Loops">Python</a>
-      and
-      <a href="https://numpy.org/doc/stable/user/basics.broadcasting.html">NumPy Broadcasting</a>)
-    </li>
-    <li>
-      For all projects, don't get bogged down tweaking input parameters. Most,
-      but not all images will line up using the same parameters. Your final
-      results should be the product of a fixed set of parameters (if you have
-      free parameters). Don't worry if one or two of the handout images don't
-      align properly using the simpler metrics suggested here.
-    </li>
-    <li>
-      Convert images to floats.
-      The input images can be in jpg (uint8) or tiff format (uint16), remember
-      to convert all the formats to the same scale
-      (see im2double and im2uint8).
-    </li>
-    <li>Shifting a matrix is easy to do in Python with np.roll.</li>
-    <li>
-      The borders of the images will probably hurt your results, try computing
-      your metric on the internal pixels only.
-    </li>
-    <li>
-      Output all of your images to jpg, it'll save you a lot of disk space.
-    </li>
+    <li>Use a fixed set of parameters; don’t over‑tune per image. One failure is okay with simple metrics.</li>
+    <li>Convert images to floats and the same scale (e.g., im2double/im2uint8). JPGs are uint8; TIFFs may be uint16.</li>
+    <li>Shift arrays with <code>np.roll</code>.</li>
+    <li>Ignore borders when scoring; compute metrics on interior pixels.</li>
+    <li>Save outputs as JPG to reduce disk usage.</li>
   </ul>
-  <br>
-  <p>This assignment will be graded out of <b>100</b> points, as follows:</p>
+
   <h3>Grading Rubric</h3>
-  <div style="display: flex; justify-content: space-between;">
-    <div style="width: 48%;">
+  <p>This assignment will be graded out of <b>100</b> points, as follows:</p>
+  <div class="rubric">
+    <div class="rubric-col">
       <h4>CS180</h4>
-      <ul>
-        <li>
-          <b>60 points</b> for a single-scale implementation with successful
-          results on low-res images.
-        </li>
-        <li>
-          <b>40 points</b> for a multiscale pyramid version that works on the
-          large images.
-        </li>
-      </ul>
+      <h5>Single-scale alignment (60 points total)</h5>
+      <div class="rubric-indent">
+        <p><b>For results:</b></p>
+        <ul>
+          <li><b>+50%:</b> No alignment defects on “cathedral,” “monastery,” “tobolsk.” (Assume single‑scale is satisfied if pyramids work.)</li>
+          <li><b>+30%:</b> Some defects on “cathedral,” “monastery,” “tobolsk.”</li>
+          <li><b>0%:</b> No effort on alignment.</li>
+        </ul>
+        <p><b>For presentation:</b></p>
+        <ul>
+          <li><b>+50%:</b> Thorough explanation / approach / good presentation.</li>
+          <li><b>+30%:</b> Explanation present, could go further in depth.</li>
+          <li><b>+20%:</b> Minimal explanation on webpage.</li>
+          <li><b>0%:</b> No section / no explanation on webpage.</li>
+        </ul>
+      </div>
+
+      <h5>Multi-scale pyramid alignment (with NCC / L2) (40 points total)</h5>
+      <div class="rubric-indent">
+        <p><b>For results:</b></p>
+        <ul>
+          <li><b>+50%:</b> Alignment defects on ≤ 1 / 14 images.</li>
+          <li><b>+40%:</b> Alignment defects on ≤ 3 / 14 images, or missing.</li>
+          <li><b>+30%:</b> Alignment defects on ≤ 6 / 14 images, or missing.</li>
+          <li><b>+20%:</b> Alignment defects on &gt; 6 / 14 images, but effort shown.</li>
+          <li><b>0%:</b> No effort on alignment.</li>
+        </ul>
+        <p><b>For presentation:</b></p>
+        <ul>
+          <li><b>+50%:</b> Thorough explanation, walking through each step carefully (e.g., NCC / L2).</li>
+          <li><b>+40%:</b> Explains motivation / approach / good presentation.</li>
+          <li><b>+30%:</b> Explanation present, could go further in depth.</li>
+          <li><b>+20%:</b> Minimal explanation on webpage.</li>
+          <li><b>0%:</b> No explanation on webpage.</li>
+        </ul>
+      </div>
     </div>
-    <div style="width: 48%;">
+
+    <div class="rubric-col">
       <h4>CS280A</h4>
-      <ul>
-        <li>
-          <b>40 points</b> for a single-scale implementation with successful
-          results on low-res images.
-        </li>
-        <li>
-          <b>30 points</b> for a multiscale pyramid version that works on the
-          large images.
-        </li>
-        <li>
-          <b>30 points</b> for implementing the mandatory bells and whistles:
-          <ul>
-            <li>Automatic cropping</li>
-            <li>Automatic contrasting</li>
-            <li>Automatic white balance</li>
-            <li>Better color mapping</li>
-            <li>Better features</li>
-          </ul>
-        </li>
-      </ul>
+      <h5>Single-scale alignment (40 points total)</h5>
+      <h5>Multi-scale pyramid alignment (with NCC / L2) (30 points total)</h5>
+      <h5>Bells &amp; Whistles (30 points total; 6 points per item)</h5>
+      <div class="rubric-indent">
+        <p><b>Required items (CS280A) — 6 points each:</b></p>
+        <ul>
+          <li>Automatic cropping</li>
+          <li>Automatic contrasting</li>
+          <li>Automatic white balance</li>
+          <li>Better color mapping</li>
+          <li>Better features</li>
+        </ul>
+        <p><b>For results (per item):</b></p>
+        <ul>
+          <li><b>+20%:</b> Additional trick is interesting / produces noticeably better results.</li>
+        </ul>
+        <p><b>For presentation (per item):</b></p>
+        <ul>
+          <li><b>+80%:</b> Thorough explanation, motivation, approach, before &amp; after results.</li>
+          <li><b>+60%:</b> Explanation present, could go further in depth.</li>
+          <li><b>+40%:</b> Minimal explanation + visual results.</li>
+          <li><b>0%:</b> No effort / no explanation on webpage.</li>
+        </ul>
+      </div>
     </div>
   </div>
 
+
+  <h3>Common Questions</h3>
+  <p><b>Q: What’s considered a good alignment vs. a bad alignment?</b></p>
+  <p>Since one failure is allowed while still receiving full credit for alignment, aim for strong results on most images (with a few failures) rather than acceptable-but-mediocre results on all images.</p>
+  <table style="margin: 0.5em auto 1em auto; border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th style="padding: 0.25em 0.75em; text-align: center;">Okay</th>
+        <th style="padding: 0.25em 0.75em; text-align: center;">Not Okay</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 0.25em 0.75em; text-align: center; vertical-align: top;">
+          <img src="proj1_files/okay.png" alt="Example of acceptable alignment" style="height: 200px; width: auto; max-width: 320px; border: 1px solid #ddd; object-fit: contain;">
+        </td>
+        <td style="padding: 0.25em 0.75em; text-align: center; vertical-align: top;">
+          <img src="proj1_files/notokay.png" alt="Example of unacceptable alignment" style="height: 200px; width: auto; max-width: 320px; border: 1px solid #ddd; object-fit: contain;">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><b>Q: What if I used a better distance function beyond L2 and NCC to get better alignments?</b></p>
+  <p>That’s great and encouraged. However, to receive full credit you must still document results using the basic distance functions (L2/NCC). If you skip this, your presentation score will be penalized.</p>
 
 </body>
 
