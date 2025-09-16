@@ -40,7 +40,9 @@ In this part, we will build intuitions about 2D convolutions and filtering.
 <p class="text">
 
 <br>
-First, let's recap what a convolution is. Implement it with four for loops, then two for loops. Compare it with a built-in convolution function 
+First, let's recap what a convolution is. Implement it with four for loops, then two for loops. 
+Implement padding, with zero fill values; convolution without padding will receive partial credit.
+Compare it with a built-in convolution function 
 <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.convolve2d.html"><code>scipy.signal.convolve2d</code></a>!
 
 Then, take a picture of yourself (and read it as grayscale), write out a 9x9 box filter, and convolve the picture with the box filter. 
@@ -209,6 +211,32 @@ For this project you must turn in both your code and a project webpage as descri
 
 <br>
 Also, submit the webpage URL to the class gallery via Google Form <a href="https://forms.gle/hnfh2X9kvJKns9HQ9">here</a>.
+
+<br>
+<br>
+
+The detailed list of deliverables is released here for transparency. This is what we will check for in your website submission! However, we reserve the right to grade on a case to case basis, and we will <i>not</i> release the point distribution for each item.
+
+<br>
+<br>
+
+Part 1: Filters and Edges
+<ul>
+  <li class="text"><b>Part 1.1.</b> Provide correct implementations of convolution, with numpy only. Compare with <code>scipy.signal.convolve2d</code>, and comment on runtime and how boundaries are handled.</li>
+  <li class="text"><b>Part 1.2.</b> Show partial derivatives in x and y, the gradient magnitude image, and a binarized edge image. Feel free to make minor tradeoffs between finding all edges and removing all noise, but please justify your decision.</li>
+  <li class="text"><b>Part 1.3.</b> Construct Gaussian filters using cv2.getGaussianKernel, build DoG filters, and visualize them. Apply both Gaussian smoothing and DoG filters to the cameraman image. Compare these results with those from the finite difference method.</li>
+  <li class="text"><b>Bells and whistles.</b> Compute and visualize gradient orientations for the cameraman image (without using built-in angle functions) and explain your process.</li>
+</ul>
+
+Part 2: Applications
+<ul>
+  <li class="text"><b>Part 2.1.</b> Implement the unsharp mask filter. Explain how it works in relation to blur filters and high frequencies. Show the blurred, high-frequency, and sharpened versions of the Taj Mahal image, as well as another image of your choice. Demonstrate how varying the sharpening amount changes the result.</li>
+  <li class="text"><b>Part 2.2.</b> Create three hybrid images (including Derek + Nutmeg and two of your own). For one hybrid, show the entire process: original and aligned images, Fourier transforms, filtered results, cutoff frequency choice, and final image. For the others, present the originals and the final hybrid.</li>
+  <li class="text"><b>Part 2.2 (bells and whistles)</b> Explore, and justify your choices!</li>
+  <li class="text"><b>Part 2.3 + 2.4</b> Visualize the process (show the Gaussian and Laplacian stacks for the Orange + Apple images, and recreate the outcomes of Figure 3.42 (a) through (l)). Also, include 2 additional custom blended images; one of them should have an irregular mask (not just straight lines).</li>
+  <li class="text"><b>Part 2.4 (bells and whistles)</b> Explore, and justify your choices!</li>
+</ul>
+
 
 <h3>Scoring</h3>
 
