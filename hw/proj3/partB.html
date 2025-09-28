@@ -532,13 +532,13 @@ style='font-family:Helvetica;color:red'>Due time: by 11:59pm on the due date</sp
       <ul style="margin-top: 0in" type="disc">
         <li class="MsoNormal" style="mso-list: l2 level1 lfo1; tab-stops: list 0.5in">
           <span style="mso-bookmark: papers"
-            ><span style="font-size: 10pt; font-family: Helvetica">B.1: Detecting corner features in an image (10 pts)<o:p></o:p></span
+            ><span style="font-size: 10pt; font-family: Helvetica">B.1: Detecting corner features in an image (20 pts)<o:p></o:p></span
           ></span>
         </li>
         <li class="MsoNormal" style="mso-list: l2 level1 lfo1; tab-stops: list 0.5in">
           <span style="mso-bookmark: papers"
             ><span style="font-size: 10pt; font-family: Helvetica"
-              >B.2: Extracting a Feature Descriptor for each feature point (10 pts)<o:p></o:p></span
+              >B.2: Extracting a Feature Descriptor for each feature point (20 pts)<o:p></o:p></span
           ></span>
         </li>
         <li class="MsoNormal" style="mso-list: l2 level1 lfo1; tab-stops: list 0.5in">
@@ -550,19 +550,12 @@ style='font-family:Helvetica;color:red'>Due time: by 11:59pm on the due date</sp
         <li class="MsoNormal" style="mso-list: l2 level1 lfo1; tab-stops: list 0.5in">
           <span style="mso-bookmark: papers"
             ><span style="font-size: 10pt; font-family: Helvetica"
-              >B.4: Use a robust method (RANSAC) to compute a homography (30 pts)<o:p></o:p></span
+              >B.4: Use a robust method (RANSAC) to compute and apply homographies (40 pts)<o:p></o:p></span
           ></span>
         </li>
         <li class="MsoNormal" style="mso-list: l2 level1 lfo1; tab-stops: list 0.5in">
           <span style="mso-bookmark: papers"
-            ><span style="font-size: 10pt; font-family: Helvetica"
-              >B.5: Proceed as in the first part to produce a mosaic (30 pts; you may use the same images from part A, but show both
-              manually and automatically stitched results side by side) [produce at least <b>three</b> mosaics]<o:p></o:p></span
-          ></span>
-        </li>
-        <li class="MsoNormal" style="mso-list: l2 level1 lfo1; tab-stops: list 0.5in">
-          <span style="mso-bookmark: papers"
-            ><span style="font-size: 10pt; font-family: Helvetica">B.6: Bells &amp; Whistles<o:p></o:p></span
+            ><span style="font-size: 10pt; font-family: Helvetica">B.5: Bells &amp; Whistles<o:p></o:p></span
           ></span>
         </li>
       </ul>
@@ -612,10 +605,10 @@ style='font-family:Helvetica;color:red'>Due time: by 11:59pm on the due date</sp
               <o:p></o:p></span
           ></span>
         </li>
-        <li class="MsoNormal">
-          Implement Adaptive Non-Maximal Suppression (Section 3). Include on your webpage a figure of the chosen corners overlaid on the
-          image. This section has multiple moving parts; you may need to read it a few times. You may want to skip this step and come back
-          to it; just choose a random set of corners instead in the meantime.
+        <li class="MsoNormal" style="font-size: 10pt; font-family: Helvetica">
+          Implement Adaptive Non-Maximal Suppression (ANMS, Section 3). Include on your webpage a figure of the chosen corners overlaid on
+          the image. This section has multiple moving parts; you may need to read it a few times. You may want to skip this step and come
+          back to it; just choose a random set of corners instead in the meantime.
         </li>
       </ul>
 
@@ -624,11 +617,10 @@ style='font-family:Helvetica;color:red'>Due time: by 11:59pm on the due date</sp
           ><span style="font-size: 10pt; font-family: Helvetica"><o:p>&nbsp;</o:p></span></span
         >
       </p>
-
       <p class="MsoNormal">
         <span style="font-size: 10pt; font-family: Helvetica"
-          ><span style="text-decoration: underline">Deliverables:</span> Show detected corners overlaid on image. Implement ANMS for
-          well-distributed features.<o:p></o:p
+          ><span style="text-decoration: underline">Deliverables:</span> Show detected corners overlaid on image, with and without ANMS.<o:p
+          ></o:p
         ></span>
       </p>
 
@@ -646,6 +638,11 @@ style='font-family:Helvetica;color:red'>Due time: by 11:59pm on the due date</sp
         ></span>
       </p>
 
+      <p class="MsoNormal">
+        <span style="mso-bookmark: papers"
+          ><span style="font-size: 10pt; font-family: Helvetica"><o:p>&nbsp;</o:p></span></span
+        >
+      </p>
       <p class="MsoNormal">
         <span style="font-size: 10pt; font-family: Helvetica"
           ><span style="text-decoration: underline">Deliverables:</span> Extract normalized 8x8 feature descriptors. Show several extracted
@@ -666,6 +663,11 @@ style='font-family:Helvetica;color:red'>Due time: by 11:59pm on the due date</sp
             >Ignore Section 6 of the paper.<o:p></o:p></span
         ></span>
       </p>
+      <p class="MsoNormal">
+        <span style="mso-bookmark: papers"
+          ><span style="font-size: 10pt; font-family: Helvetica"><o:p>&nbsp;</o:p></span></span
+        >
+      </p>
 
       <p class="MsoNormal">
         <span style="font-size: 10pt; font-family: Helvetica"
@@ -677,7 +679,9 @@ style='font-family:Helvetica;color:red'>Due time: by 11:59pm on the due date</sp
       <p class="MsoNormal">
         <span style="mso-bookmark: papers"
           ><span style="font-size: 10pt; font-family: Helvetica"
-            >For step 4, use 4-point RANSAC as described in class to compute a robust homography estimate.<o:p></o:p></span
+            >For step 4, use 4-point RANSAC as described in class to compute robust homography estimates. Then, produce mosaics by adapting
+            your code from Part A. You may use the same images from part A, but show both manually and automatically stitched results side
+            by side. Produce at least <b>three</b> mosaics. <o:p></o:p></span
         ></span>
       </p>
       <p class="MsoNormal">&nbsp;</p>
@@ -685,59 +689,36 @@ style='font-family:Helvetica;color:red'>Due time: by 11:59pm on the due date</sp
       <p class="MsoNormal">
         <span style="font-size: 10pt; font-family: Helvetica"
           ><span style="text-decoration: underline">Deliverables:</span> Implement 4-point RANSAC from scratch. Show comparison of stitching
-          with and without RANSAC. Create 3 automatic mosaics total.<o:p></o:p
+          manually and automatically. Create >=3 automatic mosaics.<o:p></o:p
         ></span>
       </p>
 
-      <h1>B.5: What have you learned?</h1>
-      <p class="MsoNormal">
-        <span style="font-size: 10pt; font-family: Helvetica">Tell us whats the coolest thing you have learned from this project.</span>
-      </p>
-
-      <p class="MsoNormal">
-        <span style="mso-bookmark: papers"
-          ><span style="font-size: 10pt; font-family: Helvetica"><o:p>&nbsp;</o:p></span></span
-        >
-      </p>
-
-      <p class="MsoNormal">
-        <span style="font-size: 10pt; font-family: Helvetica"
-          ><span style="text-decoration: underline">Deliverables:</span> Compare manual vs automatic stitching results. Reflect on what
-          worked well and what was challenging.<o:p></o:p
-        ></span>
-      </p>
-
-      <p class="MsoNormal">
-        <span style="font-size: 10pt; font-family: Helvetica"><o:p>&nbsp;</o:p></span>
-      </p>
-
-      <p class="MsoNormal">
-        <span style="font-size: 10pt; font-family: Helvetica"><o:p>&nbsp;</o:p></span>
-      </p>
-
-      <h1>B.6: Bells &amp; Whistles (Extra for CS180, Mandatory for CS280A)</h1>
-      <h2>Choose one:</h2>
+      <h1>B.5: Bells &amp; Whistles (Extra for CS180, Mandatory for CS280A)</h1>
+      <h4>Choose one:</h4>
 
       <ul style="margin-top: 0in" type="disc">
         <li class="MsoNormal" style="mso-list: l3 level1 lfo4; tab-stops: list 0.5in">
-          <b><span style="font-size: 10pt; font-family: Helvetica">Multiscale processing</span></b>
+          <b><span style="font-size: 10pt; font-family: Helvetica">Multiscale processing:</span></b>
           <span style="font-size: 10pt; font-family: Helvetica"
-            >: Add multiscale processing for corner detection and feature description.<span style="mso-spacerun: yes"> </span><o:p></o:p
+            >Add multiscale processing for corner detection and feature description.<span style="mso-spacerun: yes"> </span><o:p></o:p
           ></span>
         </li>
         <li class="MsoNormal" style="mso-list: l3 level1 lfo4; tab-stops: list 0.5in">
-          <b><span style="font-size: 10pt; font-family: Helvetica">Rotation invariance</span></b>
+          <b><span style="font-size: 10pt; font-family: Helvetica">Rotation invariance:</span></b>
           <span style="font-size: 10pt; font-family: Helvetica"
-            >: Add rotation invariance to the feature descriptors.<span style="mso-spacerun: yes"> </span><o:p></o:p
+            >Add rotation invariance to the feature descriptors.<span style="mso-spacerun: yes"> </span><o:p></o:p
           ></span>
         </li>
         <li class="MsoNormal" style="mso-list: l3 level1 lfo4; tab-stops: list 0.5in">
-          <b><span style="font-size: 10pt; font-family: Helvetica">Panorama recognition</span></b>
-          <span style="font-size: 10pt; font-family: Helvetica"
-            >: Implement panorama recognition from an unordered set of images.<span style="mso-spacerun: yes"> </span><o:p></o:p
+          <b><span style="font-size: 10pt; font-family: Helvetica">Panorama recognition:</span></b>
+          <span style="font-size: 10pt; font-family: Helvetica">
+            Implement panorama recognition from an unordered set of images.<span style="mso-spacerun: yes"> </span><o:p></o:p
           ></span>
         </li>
       </ul>
+      <br />
+      <br />
+      <br />
     </div>
   </body>
 </html>
