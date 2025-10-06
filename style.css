@@ -210,7 +210,7 @@ table {
 .table-header-cell {
   background-color: var(--berkeley-blue);
   color: var(--white);
-  padding: var(--space-md);
+  padding: var(--space-sm);
   text-align: center;
   font-weight: 600;
   border: 1px solid var(--berkeley-blue);
@@ -218,7 +218,7 @@ table {
 
 .table-cell {
   background-color: var(--light-gray);
-  padding: var(--space-md);
+  padding: var(--space-sm);
   vertical-align: top;
   border: 1px solid var(--border-gray);
 }
@@ -352,8 +352,8 @@ table {
 
 /* Course Info Section */
 .course-info-section {
-  margin: var(--space-2xl) 0;
-  padding: var(--space-xl);
+  margin: var(--space-lg) 0;
+  padding: var(--space-md) var(--space-lg) var(--space-sm) var(--space-lg);
   background-color: var(--light-gray);
   border-radius: var(--border-radius);
   border-left: 4px solid var(--berkeley-blue);
@@ -370,8 +370,8 @@ table {
 }
 
 .project-item {
-  margin: var(--space-2xl) 0;
-  padding: var(--space-xl);
+  margin: var(--space-lg) 0;
+  padding: var(--space-md) var(--space-lg) var(--space-sm) var(--space-lg);
   background-color: var(--white);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
