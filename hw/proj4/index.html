@@ -42,12 +42,195 @@
     </h4>
 
     <h1>Part 0: Calibrating Your Camera and Capturing a 3D Scan</h1>
+    <p class="text">
+      For the first part of the assignment, you will take a 3D scan of your own object which you will build a NeRF of later!
+      To do this, we will use visual tracking targets called <a href="https://cs-courses.mines.edu/csci507/schedule/24/ArUco.pdf">ArUco tags</a>,
+      which provide a way to reliably detect the same 3D keypoints across different images. There are 2 parts: 1) calibrating your camera
+      parameters, and 2) using them to estimate pose. This part can be done entirely locally on your laptop, no need for a GPU. We will be using
+      many helper functions from <a href="https://opencv.org/">OpenCV</a>, which you can install with <code>pip install opencv-python</code>.
+    </p>
 
     <h3>Part 0.1: Calibrating Your Camera</h3>
+    <p class="text">
+      First, either print out the following <a href="assets/aruco_grid-2.pdf">calibration tags</a> or pull them up on a laptop/iPad screen.
+      Capture 30-50 images of these tags from your phone camera, <b>keeping the zoom the same</b>. While capturing, results will be best if you
+      vary the angle/distance of the camera, like shown in chessboard calibration in lecture.
+    </p>
+    <p class="text">
+      <b>Note:</b> For the purpose of this assignment, phone cameras work better since they provide undistorted images without lens effects. If you use a real camera, try to make
+      sure there are no distortion effects.
+    </p>
+    <p class="text">
+      Now you'll write a script to calibrate your camera using the images you captured. Here's the pipeline:
+    </p>
+    <ol>
+      <li>Loop through all your calibration images</li>
+      <li>For each image, detect the ArUco tags using OpenCV's ArUco detector</li>
+      <li>Extract the corner coordinates from the detected tags</li>
+      <li>Collect all detected corners and their corresponding 3D world coordinates</li>
+      <li>Use <a href="https://docs.opencv.org/4.x/d9/d0c/group__calib3d.html#ga3207604e4b1a1758aa66acb6ed5aa65d"><code>cv2.calibrateCamera()</code></a> to compute the camera intrinsics and distortion coefficients</li>
+    </ol>
+    <p class="text">
+      <b>Important:</b> Your code should handle cases where tags aren't detected in some images (this is common). Make sure to check if tags were
+      found before trying to use the detection results, otherwise your script will crash.
+    </p>
+    <p class="text">Here's a code snippet to get you started with detecting ArUco tags (the tags in the PDF are 4x4):</p>
+    <div style="width: 100%; margin: 0 auto">
+      <pre><code>import cv2
+import numpy as np
+
+# Create ArUco dictionary and detector parameters (4x4 tags)
+aruco_dict = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_4X4_50)
+aruco_params = cv2.aruco.DetectorParameters()
+
+# Detect ArUco markers in an image
+# Returns: corners (list of numpy arrays), ids (numpy array)
+corners, ids, _ = cv2.aruco.detectMarkers(image, aruco_dict, parameters=aruco_params)
+
+# Check if any markers were detected
+if ids is not None:
+    # Process the detected corners
+    # corners: list of length N (number of detected tags)
+    #   - each element is a numpy array of shape (1, 4, 2) containing the 4 corner coordinates (x, y)
+    # ids: numpy array of shape (N, 1) containing the tag IDs for each detected marker
+    # Example: if 3 tags detected, corners will be a list of 3 arrays, ids will be shape (3, 1)
+else:
+    # No tags detected in this image, skip it
+    pass
+</code></pre>
+    </div>
 
     <h3>Part 0.2: Capturing a 3D Object Scan</h3>
+    <p class="text">
+      Next, pick a favorite object of yours, and print out a <b>single</b> ArUco tag, which you can generate from
+      <a href="https://chev.me/arucogen/">here</a>. Place the object next to the tag on a tabletop, and capture 30-50 images of the object from
+      different angles. <b>Important: Use the same camera and zoom level as you did for calibration.</b> If you cut out the ArUco tag from a piece of paper, make sure
+      to leave a white border around it, otherwise detection will fail.
+    </p>
+    <p class="text">Capture tips for good quality NeRF results later:</p>
+    <ol>
+      <li>Avoid brightness/exposure changes (this is why printing the tag will work better than using a tablet display)</li>
+      <li>Avoid blurry images, try not to introduce motion blur</li>
+      <li>Capture images at varying angles horizontally and vertically</li>
+      <li>Capture images at one uniform distance, about 10-20cm away from the object so that it fills ~50% of the frame</li>
+    </ol>
 
     <h3>Part 0.3: Estimating Camera Pose</h3>
+    <p class="text">
+      Now that you have calibrated your camera, you can use those intrinsic parameters to estimate the camera pose (position and orientation) for
+      each image of your object. As discussed in lecture, this is the classic <b>Perspective-n-Point (PnP)</b> problem: given a set of 3D points
+      in world coordinates and their corresponding 2D projections in an image, we want to find the camera's extrinsic parameters (rotation and
+      translation).
+    </p>
+    <p class="text">
+      For each image in your object scan, you'll detect the single ArUco tag and use <code>cv2.solvePnP()</code> to estimate the camera pose.
+      Here's what you need:
+    </p>
+    <p class="text"><b>Inputs to solvePnP:</b></p>
+    <ul>
+      <li>
+        <b>objectPoints</b> (numpy array of shape (N, 3) or (N, 1, 3)): The 3D coordinates of the ArUco tag corners in world space. Since you know the physical size of your printed tag,
+        you can define these coordinates. For example, if your tag is 0.02m × 0.02m, you might define the 4 corners as: [(0,0,0), (0.02,0,0), (0.02,0.02,0),
+        (0,0.02,0)] in meters, with the tag lying flat on the z=0 plane.
+      </li>
+      <li><b>imagePoints</b> (numpy array of shape (N, 2) or (N, 1, 2)): The detected 2D pixel coordinates of the tag corners in the image (from <code>detectMarkers()</code>).
+        You'll need to reshape the corners array from detectMarkers to match this shape.</li>
+      <li>
+        <b>cameraMatrix</b> (numpy array of shape (3, 3)): The intrinsic matrix K that you computed in Part 0.1 (contains focal length and principal point)
+      </li>
+      <li><b>distCoeffs</b> (numpy array or None): The distortion coefficients from calibration</li>
+    </ul>
+    <p class="text"><b>Output from solvePnP:</b></p>
+    <ul>
+      <li>
+        <b>success</b> (bool): Whether the pose estimation succeeded
+      </li>
+      <li>
+        <b>rvec</b> (numpy array of shape (3, 1)): Axis-Angle rotation vector (can be converted to a 3×3 rotation matrix using <code>cv2.Rodrigues()</code>)
+      </li>
+      <li><b>tvec</b> (numpy array of shape (3, 1)): Translation vector</li>
+    </ul>
+    <p class="text">
+      Together, the rotation matrix R (from rvec) and translation vector tvec form the camera's extrinsic matrix, which describes where the camera is positioned and oriented relative to the ArUco tag's
+      coordinate system (which we're treating as the world origin).
+    </p>
+    <p class="text">
+      <b>Important:</b> Just like in Part 0.1, make sure your code handles cases where the tag isn't detected in some images. You should skip
+      those images rather than letting your code crash.
+    </p>
+    <p class="text">
+      To help visualize your pose estimation results, you can use the following code snippet to display a camera frustum in 3D:
+    </p>
+    <div style="width: 100%; margin: 0 auto">
+      <pre><code>import viser
+import numpy as np
+
+server = viser.ViserServer(share=True)
+# Example of visualizing a camera frustum (in practice loop over all images)
+# c2w is the camera-to-world transformation matrix (3x4), and K is the camera intrinsic matrix (3x3)
+server.scene.add_camera_frustum(
+    f"/cameras/{i}", # give it a name
+    fov=2 * np.arctan2(H / 2, K[0, 0]), # field of view
+    aspect=W / H, # aspect ratio
+    scale=0.02, # scale of the camera frustum change if too small/big
+    wxyz=viser.transforms.SO3.from_matrix(c2w[:3, :3]).wxyz, # orientation in quaternion format
+    position=c2w[:3, 3], # position of the camera
+    image=img # image to visualize
+)
+</code></pre>
+    </div>
+
+    <h3>Part 0.4: Undistorting images and creating a dataset</h3>
+    <p class="text">
+      Now that you have the camera intrinsics and pose estimates, the final step is to undistort your images and package everything into a
+      dataset format that you can use for training NeRF in the later parts of this project.
+    </p>
+    <p class="text">
+      First, use <code>cv2.undistort()</code> to remove any lens distortion from your images. This is important because NeRF assumes a perfect
+      pinhole camera model without distortion.
+    </p>
+    <div style="width: 100%; margin: 0 auto">
+      <pre><code>import cv2
+
+# Undistort an image using the calibration results
+undistorted_img = cv2.undistort(img, camera_matrix, dist_coeffs)
+</code></pre>
+    </div>
+    <p class="text">
+      After undistorting all your images, you'll need to save everything in a <code>.npz</code> file format that matches what's expected for the
+      NeRF training code. You should split your images into training, validation, and test sets, then save using the following keys:
+    </p>
+    <ul>
+      <li><b>images_train</b>: numpy array of shape (N_train, H, W, 3) containing your undistorted training images (0-255 range, will be normalized when loaded)</li>
+      <li><b>c2ws_train</b>: numpy array of shape (N_train, 4, 4) containing the camera-to-world transformation matrices for training images</li>
+      <li><b>images_val</b>: numpy array of shape (N_val, H, W, 3) for validation images</li>
+      <li><b>c2ws_val</b>: numpy array of shape (N_val, 4, 4) for validation camera poses</li>
+      <li><b>c2ws_test</b>: numpy array of shape (N_test, 4, 4) for test camera poses (used for novel view rendering)</li>
+      <li><b>focal</b>: float representing the focal length from your camera intrinsics (assuming fx = fy)</li>
+    </ul>
+    <p class="text">
+      You can save your dataset using <code>np.savez()</code>:
+    </p>
+    <div style="width: 100%; margin: 0 auto">
+      <pre><code>import numpy as np
+
+# Package your data (keep images in 0-255 range, they'll be normalized when loaded)
+np.savez(
+    'my_data.npz',
+    images_train=images_train,    # (N_train, H, W, 3)
+    c2ws_train=c2ws_train,        # (N_train, 4, 4)
+    images_val=images_val,        # (N_val, H, W, 3)
+    c2ws_val=c2ws_val,            # (N_val, 4, 4)
+    c2ws_test=c2ws_test,          # (N_test, 4, 4)
+    focal=focal                   # float
+)
+</code></pre>
+    </div>
+    <p class="text">
+      This dataset can then be loaded in Parts 1 and 2 the same way the provided lego dataset is loaded, allowing you to train a NeRF on your
+      own captured object!
+    </p>
+    
 
     <h1>Part 1: Fit a Neural Field to a 2D Image</h1>
     <p class="text">
