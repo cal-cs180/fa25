@@ -685,6 +685,82 @@ assert torch.allclose(rendered_colors, correct, rtol=1e-4, atol=1e-4)</code></pr
       </video>
     </div>
 
+    <h3>Part 2.6: Training with your own data</h3>
+    <p>You will now use the dataset you created in part 0 to create a NeRF of your chosen object. After training a NeRF
+      on your dataset render a gif of novel views from your scene using the code below.
+    </p>
+
+    <div style="width: 600px; margin: 0 auto">
+      <pre>
+        <code>def trans_x(x):
+  return np.array([
+      [1,0,0,x],
+      [0,1,0,0],
+      [0,0,1,0],
+      [0,0,0,1],
+  ])
+
+def rot_x(phi):
+    return np.array([
+        [math.cos(phi), -math.sin(phi), 0, 0],
+        [math.sin(phi), math.cos(phi), 0, 0],
+        [0,0,1,0],
+        [0,0,0,1],
+    ])
+
+def rot_y(th):
+    return np.array([
+        [math.cos(th), 0, math.sin(th), 0],
+        [0, 1, 0, 0],
+        [-math.sin(th),0,math.cos(th),0],
+        [0,0,0,1],
+    ])
+
+def pose_spherical(th, radius):
+    c2w = trans_x(radius)
+    c2w = rot_y(th/180.*np.pi) @ c2w
+    c2w = c2w @ np.array([[0,0,-1,0],[1,0,0,0],[0,-1,0,0],[0,0,0,1]])
+    return c2w
+
+frames = []
+for phi in np.linspace(0., 360., 60, endpoint=False):
+    c2w = pose_spherical(-45, 0.13)
+    extrinsic = rot_x(phi/180.*np.pi) @ c2w
+    
+    # Generate view for this camera pose
+    # Add code for generating a view with your model from the current extrinsic
+    frame = ...
+    frames.append(frame)
+        </code>
+      </pre>
+    </div>
+
+    <p>
+      Helpful Tips / Common Mistakes:
+    </p>
+    <ul>
+      <li>
+        When using the test data our near and far parameters are set to 2.0 and 6.0 respectively. You will likely have to adjust these for the real data you collect. These parameters represent the minimum and maximum distance away from the camera's sensor that we start and stop sampling. For our example we found that near = 0.02 and far = 0.5 worked well, but you will likely have to do some experimenting to find values that work for you.
+      </li>
+      <li>
+        You might want to increase the number of samples along your rays for your real data. This will take longer to train, but can improve visual quality of your NeRF. For our implementation we first trained with 32 samples in order to ensure that there are no issues or bugs in other parts of our code and then increased to 64 samples per ray to get our final result.
+      </li>
+      <li>
+        If training is taking an unreasonable amount of time, your image resolution may be the issue. Attempting to train with too large of images may take a long time. If you resize your images you need to ensure that your intrinsics matrix reflects this change either by resizing before doing calibration or adjusting the intrinsics matrix after recovering it.
+      </li>
+    </ul>
+
+    <p class="text">
+      <b>[Impl]</b> Train a NeRF on your chosen object dataset collected in part 0. Make sure to save the training loss 
+      over iterations as well as to generate intermediate renders for the deliverables.
+    </p>
+
+    <p class="text">
+      <b>[Deliverables]</b> Create a gif of a camera circling the object showing novel views and discuss any code or 
+      hyperparameter changes you had to make. Include a plot of the training loss as well as some intermediate renders
+      of the scene while it is training.
+    </p>
+
     <h3>Bells & Whistles (Extra Credit)</h3>
     <ul>
       <li>
