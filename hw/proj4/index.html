@@ -39,11 +39,14 @@
   <br />
   <h1 style="text-align: center">Neural Radiance Field!</h1>
   <h2 style="text-align: center">
-    <b>Due Date: TODO</b>
+    <b>Due Date: November 13th, 2025</b>
   </h2>
   <h4 style="text-align: center">
-    <b>We recommend using GPUs from <a href="https://colab.research.google.com/">Colab</a> to finish this project!
-      Colab Pro is now <a href="https://colab.research.google.com/signup">free</a> for students.</b>
+    <b>Note on compute requirements:</b> We're using PyTorch to implement neural networks with GPU acceleration.
+    If you have an M-series Mac (M1/M2/M3), you should be able to run everything locally using the
+    <a href="https://pytorch.org/docs/stable/notes/mps.html">MPS backend</a>.
+    For older or less powerful hardware, we recommend using GPUs from <a href="https://colab.research.google.com/">Colab</a>.
+    Colab Pro is now <a href="https://colab.research.google.com/signup">free</a> for students.
   </h4>
 
   <h1>Part 0: Calibrating Your Camera and Capturing a 3D Scan</h1>
@@ -209,8 +212,15 @@ server.scene.add_camera_frustum(
     position=c2w[:3, 3], # position of the camera
     image=img # image to visualize
 )
+
+while True:
+    time.sleep(0.1)  # Wait to allow visualization to run
 </code></pre>
   </div>
+
+  <p class="text">
+    <b>[Deliverables]</b> Include 2 screenshots of your cloud of cameras in Viser showing the camera frustums' poses and images.
+  </p>
 
   <h3>Part 0.4: Undistorting images and creating a dataset</h3>
   <p class="text">
@@ -605,7 +615,9 @@ server.add_point_cloud(
     points=points.reshape(-1, 3),
     point_size=0.02,
 )
-time.sleep(1000)</code></pre>
+
+while True:
+    time.sleep(0.1)  # Wait to allow visualization to run</code></pre>
       </div>
     </div>
     <div class="column">
@@ -665,7 +677,9 @@ server.add_point_cloud(
     points=points.reshape(-1, 3),
     point_size=0.03,
 )
-time.sleep(1000)</code></pre>
+
+while True:
+    time.sleep(0.1)  # Wait to allow visualization to run</code></pre>
       </div>
     </div>
     <div class="column">
@@ -929,7 +943,20 @@ for phi in np.linspace(360., 0., NUM_SAMPLES, endpoint=False):
     </div>
   </div>
 
-  <h3>Bells & Whistles (Extra Credit)</h3>
+  <h3>Bells & Whistles</h3>
+
+  <h4>Required for CS 280A students only:</h4>
+  <ul>
+    <li>
+      <b>Render the depths map video for the Lego scene.</b> Instead of compositing per-point colors to the pixel color in the
+      volume rendering, we can also composite per-point depths to the pixel depth. (See the reference video below)
+    </li>
+  </ul>
+
+  <h4>Optional for all students:</h4>
+  <p class="text">
+    The following are optional explorations for any students interested in going deeper with NeRF.
+  </p>
   <ul>
     <li>
       Better (more efficient) sampling: Implement course-to-fine PDF resampling as described in the original
@@ -954,14 +981,11 @@ for phi in np.linspace(360., 0., NUM_SAMPLES, endpoint=False):
       where you should inject the background color.
     </li>
     <li>
-      Render the depths map video for the Lego scene. Instead of compositing per-point colors to the pixel color in the
-      volume rendering,
-      we can also composite per-point depths to the pixel depth. (See the reference video below)
+      Implement scene contraction for large scenes as specified in <a href="https://jonbarron.info/mipnerf360/">Mip-NeRF 360</a>.
+      This allows NeRF to handle unbounded scenes by contracting distant points into a bounded space.
     </li>
     <li>
-      Use nerfstudio to make a cool video (the cooler / more outside the box the video, the more extra credit)! More
-      credit for using
-      things like the nerfstudio blender plugin
+      Use <a href="https://docs.nerf.studio/">nerfstudio</a> to make a cool video!
     </li>
   </ul>
   <video width="640" height="320" autoplay muted loop style="display: block; margin-left: auto; margin-right: auto">
