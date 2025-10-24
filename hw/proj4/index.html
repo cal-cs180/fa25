@@ -83,7 +83,7 @@
     <li>Loop through all your calibration images</li>
     <li>For each image, detect the ArUco tags using OpenCV's ArUco detector</li>
     <li>Extract the corner coordinates from the detected tags</li>
-    <li>Collect all detected corners and their corresponding 3D world coordinates</li>
+    <li>Collect all detected corners and their corresponding 3D world coordinates (you can consider the ArUco tag as the world origin and define the 4 corners' 3D points relative to that, e.g., if your tag is 0.02m × 0.02m, the corners could be [(0,0,0), (0.02,0,0), (0.02,0.02,0), (0,0.02,0)])</li>
     <li>Use <a
         href="https://docs.opencv.org/4.x/d9/d0c/group__calib3d.html#ga3207604e4b1a1758aa66acb6ed5aa65d"><code>cv2.calibrateCamera()</code></a>
       to compute the camera intrinsics and distortion coefficients</li>
@@ -194,7 +194,7 @@ else:
   </p>
   <p class="text">
     To help visualize your pose estimation results, you can use the following code snippet to display a camera frustum
-    in 3D:
+    in 3D (<code>pip install viser</code>):
   </p>
   <div style="width: 100%; margin: 0 auto">
     <pre><code>import viser
