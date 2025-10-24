@@ -366,10 +366,8 @@ np.savez(
   </p>
 
   <p class="text">
-    <b>[Impl: Hyperparameter Tuning]</b> Try varying two of the hyperparameters (number of layers, channel size, max
-    frequency \(L\) for
-    the positional encoding, or learning rate) and show how it affects (or doesn't affect) the performance of your
-    network.
+    <b>[Impl: Hyperparameter Tuning]</b> Vary the layer width (channel size) and the max frequency \(L\) for
+    the positional encoding.
   </p>
 
   <img src="assets/2D_training.jpg" alt="training" height="150"
@@ -381,18 +379,17 @@ np.savez(
   </p>
   <ul>
     <li>
-      Report the detailed architecture of your model. Include information on hyperparameters chosen for training and a
-      plot showing the
-      training PSNR across iterations.
+      Report your model architecture including number of layers, width, and learning rate. Feel free to add other details you think are important.
     </li>
-    <li>Visualize the training process by plotting the predicted images across iterations, similar to the above
-      reference.</li>
     <li>
-      Try running this optimization on at least another image from your collection. Choose one set of hyperparameter for
-      this image and
-      show the PNSR curve, as well as the visualization of the training process.
+      Show training progression (images at different iterations, similar to the above reference) on both the provided test image and one of your own images.
     </li>
-    <li>Run the aforementioned hyperparameter tuning.</li>
+    <li>
+      Show final results for 2 choices of max positional encoding frequency and 2 choices of width (a 2x2 grid of results). Try very low values for these hyperparameters to see how it affects the outputs.
+    </li>
+    <li>
+      Show the PSNR curve for training on one image of your choice.
+    </li>
   </ul>
 
   <h1>Part 2: Fit a Neural Radiance Field from Multi-view Images</h1>
@@ -991,6 +988,48 @@ for phi in np.linspace(360., 0., NUM_SAMPLES, endpoint=False):
   <video width="640" height="320" autoplay muted loop style="display: block; margin-left: auto; margin-right: auto">
     <source type="video/mp4" src="assets/depths.mp4" />
   </video>
+
+  <h1>Deliverables Checklist</h1>
+  <p class="text">
+    Make sure your submission includes all of the following:
+  </p>
+
+  <h3>Part 0: Camera Calibration and 3D Scanning</h3>
+  <ul>
+    <li>2 screenshots of your camera frustums visualization in Viser</li>
+  </ul>
+
+  <h3>Part 1: Fit a Neural Field to a 2D Image</h3>
+  <ul>
+    <li>Model architecture report (number of layers, width, learning rate, and other important details)</li>
+    <li>Training progression visualization on both the provided test image and one of your own images</li>
+    <li>Final results for 2 choices of max positional encoding frequency and 2 choices of width (2x2 grid)</li>
+    <li>PSNR curve for training on one image of your choice</li>
+  </ul>
+
+  <h3>Part 2: Fit a Neural Radiance Field from Multi-view Images</h3>
+  <ul>
+    <li>Brief description of how you implemented each part</li>
+    <li>Visualization of rays and samples with cameras (up to 100 rays)</li>
+    <li>Training progression visualization with predicted images across iterations</li>
+    <li>PSNR curve on the validation set</li>
+    <li>Spherical rendering video of the Lego using provided test cameras</li>
+  </ul>
+
+  <h3>Part 2.6: Training with Your Own Data</h3>
+  <ul>
+    <li>GIF of camera circling your object showing novel views</li>
+    <li>Discussion of code or hyperparameter changes you made</li>
+    <li>Plot of training loss over iterations</li>
+    <li>Intermediate renders of the scene during training</li>
+  </ul>
+
+  <h3>Bells & Whistles (if applicable)</h3>
+  <ul>
+    <li><b>CS 280A students:</b> Depth map video for the Lego scene</li>
+    <li><b>Optional:</b> Any additional explorations you completed</li>
+  </ul>
+
 </body>
 <grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
 
