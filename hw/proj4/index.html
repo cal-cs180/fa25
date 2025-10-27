@@ -193,7 +193,7 @@ else:
   <p class="text">
     Together, the rotation matrix R (from rvec) and translation vector tvec form the camera's extrinsic matrix, which
     describes where the camera is positioned and oriented relative to the ArUco tag's
-    coordinate system (which we're treating as the world origin).
+    coordinate system (which we're treating as the world origin). <b>Note:</b> OpenCV's <code>solvePnP()</code> returns the world-to-camera transformation; you will need to invert this to get the camera-to-world (c2w) matrix for visualization and Part 0.4.
   </p>
   <p class="text">
     <b>Important:</b> Just like in Part 0.1, make sure your code handles cases where the tag isn't detected in some
