@@ -521,26 +521,27 @@ focal = data["focal"]  # float
   </p>
 
   <p class="text">
-    <b>Pixel to Ray.</b> A ray can be defined by an origin \(\mathbf{r}_o \in R^3\) vector and a direction
-    \(\mathbf{r}_d \in R^3\)
-    vector. So in the case of pinhole camera, we want to know the \(\{\mathbf{r}_o, \mathbf{r}_d\}\) for every pixel
+    <b>Pixel to Ray.</b> A ray can be defined by an origin vector \(\mathbf{r}_o \in R^3\) and a direction
+    vector \(\mathbf{r}_d \in R^3\). In the case of a pinhole camera, we want to know the \(\{\mathbf{r}_o, \mathbf{r}_d\}\) for every pixel
     \((u, v)\). The
-    origin \(\mathbf{r}_o\) of those rays are eazy to get because it is just the location of the cameras:
-    \[\begin{align} \mathbf{r}_o =
-    -\mathbf{R}_{3\times3}^{-1}\mathbf{t} \end{align}\] To calculate the ray direction for pixel \((u, v)\), we can
+    origin \(\mathbf{r}_o\) of those rays is easy to get because it is just the location of the camera in world coordinates.
+    For a camera-to-world (c2w) transformation matrix \(\begin{bmatrix} \mathbf{R}_{3\times3} & \mathbf{t} \\
+    \mathbf{0}_{1\times3} & 1 \end{bmatrix}\), the camera origin is simply the translation component:
+    \[\begin{align} \mathbf{r}_o = \mathbf{t} \end{align}\]
+    To calculate the ray direction for pixel \((u, v)\), we can
     simply choose a point
-    along this ray with depth equals 1 (\(s=1\)) and find its coordinate in the world space \(\mathbf{X_w} = (x_w, y_w,
-    z_w)\). Then the
+    along this ray with depth equal to 1 (\(s=1\)) and find its coordinate in world space \(\mathbf{X_w} = (x_w, y_w,
+    z_w)\) using your previously implemented functions. Then the
     normalized ray direction can be computed by: \[\begin{align} \mathbf{r}_d = \frac{\mathbf{X_w} -
     \mathbf{r}_o}{||\mathbf{X_w} -
     \mathbf{r}_o||_2} \end{align}\]
   </p>
   <p class="text">
-    <b>[Impl]</b> In this session you would need to implement this function that convert a pixel coordinate to a ray
+    <b>[Impl]</b> In this section you will need to implement a function that converts a pixel coordinate to a ray
     with origin and
-    noramlized direction: <code>ray_o, ray_d = pixel_to_ray(K, c2w, uv)</code>. You might find your previously
+    normalized direction: <code>ray_o, ray_d = pixel_to_ray(K, c2w, uv)</code>. You might find your previously
     implemented functions
-    useful here. Similarly you might also want your implementation here to support batched coordinates.
+    useful here. Similarly, you might also want your implementation to support batched coordinates.
   </p>
 
   <hr style="font-weight: bold;"/>
