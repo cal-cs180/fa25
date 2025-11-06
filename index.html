@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <header class="header">
       <div class="container">
         <div class="header-content">
@@ -35,7 +36,7 @@
       </div>
     </header>
 
-    <main class="container">
+    <main id="main-content" class="container">
 
       <section class="course-info-section">
         <h2>Course Information</h2>
@@ -55,7 +56,7 @@
           <strong>Gradescope Entry Code:</strong>
           VWX283<br />
           <strong>Ed:</strong>
-          <a href="https://edstem.org/us/courses/83238/discussion">URL</a> | <a href="https://edstem.org/us/join/dMpHBv">access code</a><br />
+          <a href="https://edstem.org/us/courses/83238/discussion">Discussion forum</a> | <a href="https://edstem.org/us/join/dMpHBv">Join with access code</a><br />
           <strong>Syllabus:</strong>
           <a href="./Syllabus.pdf">PDF</a><br />
           <strong>Location:</strong> Haas Faculty Wing F295<br />
@@ -96,11 +97,12 @@
         </p>
         <div class="table-container">
           <table>
+            <caption class="sr-only">Discussion sections schedule with GSI names, times, and locations</caption>
             <thead>
               <tr>
-                <th class="table-header-cell">Person</th>
-                <th class="table-header-cell">Time</th>
-                <th class="table-header-cell">Location</th>
+                <th scope="col" class="table-header-cell">Person</th>
+                <th scope="col" class="table-header-cell">Time</th>
+                <th scope="col" class="table-header-cell">Location</th>
               </tr>
             </thead>
             <tbody>
@@ -141,11 +143,12 @@
         <h3>Topics</h3>
         <div class="table-container">
           <table>
+            <caption class="sr-only">Discussion topics by week with materials and resources</caption>
             <thead>
               <tr>
-                <th class="table-header-cell text-center" style="width: 15%">Discussion</th>
-                <th class="table-header-cell" style="width: 55%">Topic</th>
-                <th class="table-header-cell" style="width: 30%">Materials</th>
+                <th scope="col" class="table-header-cell text-center" style="width: 15%">Discussion</th>
+                <th scope="col" class="table-header-cell" style="width: 55%">Topic</th>
+                <th scope="col" class="table-header-cell" style="width: 30%">Materials</th>
               </tr>
             </thead>
             <tbody>
@@ -293,7 +296,7 @@
             class="example"
           />
           <p>
-            See the submission gallery <a href="https://docs.google.com/spreadsheets/d/1TMA_uP_dpiSN_L2lFsDPQzF57vl6OQ35nHKzAKAUy6s/edit?usp=sharing">here</a>.
+            <a href="https://docs.google.com/spreadsheets/d/1TMA_uP_dpiSN_L2lFsDPQzF57vl6OQ35nHKzAKAUy6s/edit?usp=sharing">View Project 0 submission gallery</a>
           </p>
         </div>
 
@@ -308,9 +311,9 @@
             alt="Colorized Russian Empire photograph by Prokudin-Gorskii"
           />
           <p>
-            See the submission gallery <a href="https://docs.google.com/spreadsheets/d/16GytIAh3VaZboPav4smw5rzTGE8vmDA4yvg8xMXcFjY/edit?usp=sharing">here</a>.
+            <a href="https://docs.google.com/spreadsheets/d/16GytIAh3VaZboPav4smw5rzTGE8vmDA4yvg8xMXcFjY/edit?usp=sharing">View Project 1 submission gallery</a>
           </p>
-          <div class="announcement" role="note" aria-label="Project 1 party information">
+          <div class="announcement" role="complementary" aria-label="Project 1 party information">
             <span class="announcement-icon" aria-hidden="true">📅</span>
             <span><strong>Party</strong> Monday, 9/8 • 5–7 PM • Soda 380</span>
           </div>
@@ -331,9 +334,9 @@
             <img src="463_files/orple.jpg" alt="Orange-apple hybrid" style="max-width: 262px;" />
           </div>
           <p>
-            See the submission gallery <a href="https://docs.google.com/spreadsheets/d/1fTCyFaqQJ61xQgaOysvfaPcPp4BTMVqdun0Z8tnp8DI/edit?usp=sharing">here</a>.
+            <a href="https://docs.google.com/spreadsheets/d/1fTCyFaqQJ61xQgaOysvfaPcPp4BTMVqdun0Z8tnp8DI/edit?usp=sharing">View Project 2 submission gallery</a>
           </p>
-          <div class="announcement" role="note" aria-label="Project 1 party information">
+          <div class="announcement" role="complementary" aria-label="Project 2 party information">
             <span class="announcement-icon" aria-hidden="true">📅</span>
             <span><strong>Party</strong> Tuesday, 9/23 • 6–8 PM • Soda 310 </span>
           </div>
@@ -351,9 +354,9 @@
           </h3>
           <img src="463_files/image028.jpg" alt="Photo stitching example" />
           <p>
-            See the submission gallery <a href="https://docs.google.com/spreadsheets/d/154EX_SseR8alNOnkXYRd4Yx5nWV4e2PiyPA1b71hOLM/edit?usp=sharing">here</a>.
+            <a href="https://docs.google.com/spreadsheets/d/154EX_SseR8alNOnkXYRd4Yx5nWV4e2PiyPA1b71hOLM/edit?usp=sharing">View Project 3 submission gallery</a>
           </p>
-          <div class="announcement" role="note" aria-label="Project 3 party">
+          <div class="announcement" role="complementary" aria-label="Project 3 party information">
             <span class="announcement-icon" aria-hidden="true">📅</span>
             <span><strong>Party</strong> Monday, 10/6 • 6–8 PM • Soda 380 </span>
           </div>
@@ -370,7 +373,7 @@
             </a>
           </h3>
           <img src="463_files/nerf.png" alt="Neural Radiance Field example" />
-          <div class="announcement" role="note" aria-label="Project 4 party">
+          <div class="announcement" role="complementary" aria-label="Project 4 party information">
             <span class="announcement-icon" aria-hidden="true">📅</span>
             <span><strong>Party</strong> TBD </span>
           </div>
@@ -397,7 +400,7 @@
         </div> -->
 
         <p>
-          See the homework <a href="./hw/submitting.html">submission specification</a>.
+          <a href="./hw/submitting.html">View homework submission specification</a>
         </p>
       </section>
 
@@ -408,15 +411,16 @@
 
         <div class="table-container">
           <table>
+            <caption class="sr-only">Class schedule with dates, lecture topics, and materials</caption>
             <thead>
               <tr>
-                <th class="table-header-cell table-cell-right-border" style="width: 10%">
+                <th scope="col" class="table-header-cell table-cell-right-border" style="width: 10%">
                   Class Date
                 </th>
-                <th class="table-header-cell" style="width: 35%">
+                <th scope="col" class="table-header-cell" style="width: 35%">
                   Topics
                 </th>
-                <th class="table-header-cell table-cell-left-border" style="width: 55%">
+                <th scope="col" class="table-header-cell table-cell-left-border" style="width: 55%">
                   Material
                 </th>
               </tr>
@@ -1537,8 +1541,7 @@
           ></b
         ><br />
         <span class="font-helvetica">
-          Previous offerings of this course can be found
-          <a href="https://cal-cs180.github.io/fa24/">here</a>.
+          <a href="https://cal-cs180.github.io/fa24/">View previous course offerings (Fall 2024)</a>
         </span>
       </p>
 

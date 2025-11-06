@@ -45,6 +45,25 @@
   box-sizing: border-box;
 }
 
+/* Skip to main content link for screen readers */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--berkeley-blue);
+  color: var(--white);
+  padding: var(--space-sm) var(--space-md);
+  text-decoration: none;
+  z-index: 100;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid var(--california-gold);
+  outline-offset: 0;
+}
+
 html {
   font-size: 16px;
   line-height: 1.6;
@@ -99,7 +118,7 @@ a {
   text-decoration: underline;
   text-decoration-color: var(--california-gold);
   text-underline-offset: 2px;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, outline 0.2s ease;
 }
 
 a:hover {
@@ -109,6 +128,25 @@ a:hover {
 
 a:visited {
   color: var(--founders-rock);
+}
+
+/* Focus states for keyboard accessibility */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 3px solid var(--california-gold);
+  outline-offset: 2px;
+}
+
+a:focus:not(:focus-visible) {
+  outline: none;
+}
+
+a:focus-visible {
+  outline: 3px solid var(--california-gold);
+  outline-offset: 2px;
 }
 
 /* Lists */
@@ -262,6 +300,19 @@ table {
 
 .hidden {
   display: none;
+}
+
+/* Screen reader only - visually hidden but accessible to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
 /* Badges & Notes */
