@@ -351,7 +351,7 @@
       sampling loops, and use them for other tasks such as inpainting and
       creating optical illusions.
       Instructions can be found below and in the <a
-        href="https://colab.research.google.com/drive/1RiLmbbnhr4YsogD3dWZ39asPVNKuPsah?usp=sharing">provided
+        href="https://colab.research.google.com/drive/19mp-ssAv3CQuVvFsUu2VvWEwnqLds9gx?usp=sharing">provided
         notebook</a>.</p>
 
     <p>Because part A is simply to get your feet wet with pre-trained diffusion
@@ -386,46 +386,35 @@
           Face Hub access token</a> below. You should be able to find and create
         tokens <a href="https://huggingface.co/settings/tokens">here</a>. A read token is enough for this project.</li>
     </ol>
-    <h3>Disclaimer about Text Embeddings</h3>
-    <p>DeepFloyd was trained as a text-to-image model, which takes text prompts
-      as input and outputs images that are aligned with the text. Throughout
-      this notebook, you will see that we ask you to generate with the prompt
-      "a high quality photo". We want you to think of this as a "null" prompt
-      that doesn't have any specific meaning, and is simply a way for the model
-      to do unconditional generation. You can view this as using the diffusion
-      model to "force" a noisy image onto the "manifold" of real images.
-
-      <p>In the later sections, we will guide this project with a more detailed
-        text prompt.</p>
-
-      <h3>!Jingfeng is trying to use HF's cluster resources!</h3>
-      <h3>Downloading Precomputed Text Embeddings </h3>
-      <p>Because the text encoder is very large, and barely fits on a free tier
-        Colab GPU, we have precomputed a couple of text embeddings for you to
-        try.
-        You can download the <code>.pth</code> file <a
-          href="prompt_embeds_dict.pth" download>here</a>.
-        This should hopefully save some headaches from GPU out of memory errors.
-        At the end of part A of the project, we provide you code if you want to
-        try your own text prompts. If you'd like, you can pay $10 for Colab Pro
-        and avoid needing to load the two models on different sessions.</p>
-
-      <p>
-        In the notebook, we instantiate DeepFloyd's <code>stage_1</code> and
-        <code>stage_2</code> objects used for generation, as well as several
-        text
-        prompts for sample generation.
-      </p>
+    <h3>Play with the Model using Your Own Text Prompts!</h3>
+    <p>
+      DeepFloyd was trained as a text-to-image model, which takes text prompts as input and outputs images that are aligned with the text. 
+      However, a raw text string cannot be directly used as the model's input — we first need to convert it into a high-dimensional vector (of 4096 dimensions in our case) that the model can understand, a.k.a. prompt embeddings.
+    <p>
+      Since prompt encoders are always very big and hard to run in your notebook, we provide a <a href="https://huggingface.co/spaces/jamesoncrate/CS180-T5-Encoder">simple interface</a> 
+      for generating your own prompt embeddings! Please follow its instructions to create a dictionary of embeddings for your prompts, download the resulting <code>.pth</code> file, and load it in Google Colab. 
+    </p>
+    <p>
+      Please note that this cluster has a daily usage limit, so if you're unable to generate today, please try again tomorrow. Alternatively, start early and download the `.pth` file in advance 
+      — you only need to generate it once, and you can reuse the downloaded file afterward. If the official site experiences issues or runs out of computation, you can download one of our precomputed embeddings, 
+      but this is a predefined set of prompts and lacks flexibility. We want to see your creativity!
+    </p>
 
       <b>Deliverables </b>
 
       <ul>
-        <li>For the 3 text prompts that we provide, display the caption and the
-          output of the model. Reflect on the quality of the outputs and their
+        <li>Come up with some interesting text prompts and generate their embeddings.</li>
+        <li>Choose 3 of your prompts to generate images and display 
+          the caption and the output of the model. Reflect on the quality of the outputs and their
           relationships to the text prompts. Make sure to try at least 2
           different <code>num_inference_steps</code> values.</li>
         <li>Report the random seed that you're using here. You should use the
           same seed all subsequent parts.</li>
+      </ul>
+
+      <b>Hints</b>
+      <ul>
+        <li>Since we ask you to generate <a href="https://dangeng.github.io/visual_anagrams/">Visual Anagrams</a> in part 1.8, you may want to include several pairs prompting visual anagrams beforehand.</li>
       </ul>
 
       <h1> Part 1: Sampling Loops</h1>
@@ -515,7 +504,7 @@
         </p>
         <ul>
           <li>Implement the <code>noisy_im = forward(im, t)</code> function</li>
-          <li> Show the test image at noise level [250, 500, 750].</li>
+          <li> Show the Campanile at noise level [250, 500, 750].</li>
         </ul>
         <p class="text">
           <b>Hints</b>
@@ -558,7 +547,7 @@
 
         <b> Deliverables </b>
         <ul>
-          <li>For each of the 3 noisy test images from the previous part, show
+          <li>For each of the 3 noisy Campanile images from the previous part, show
             your best Gaussian-denoised version side by side.</li>
         </ul>
 
@@ -626,8 +615,7 @@
         </p>
         <ul>
           <li>For the 3 noisy images from 1.2 (t = [250, 500, 750]):
-            <ul><li>Using the UNet, denoise the image by estimating the
-                noise.</li>
+            <ul><li>Use your <code>forward</code> function to add noise to your Campanile.</li>
               <li>Estimate the noise in the new noisy image, by passing it
                 through
                 <code>stage_1.unet</code></li>
@@ -651,9 +639,10 @@
           <li>You will probably have to wrangle tensors to the correct device
             and
             into the correct data types. The functions <code>.to(device)</code>
-            and <code>.half()</code> will be useful. The denoiser is loaded as
-            <code>half</code> precision (to save memory).</li>
-          <li>The signature for the unet is <code>stage_1.unet(image, t,
+            and <code>.half()</code> will be useful. The denoiser is loaded on
+            the device <code>cuda</code> as <code>half</code> precision (to save memory), so inputs
+            to the denoiser need to match them.</li>
+          <li>The signature for the unet is <code>stage_1.unet(im_noisy, t,
               encoder_hidden_states=prompt_embeds, return_dict=False)</code>.
             You
             need to pass in the noisy image, the timestep, and the prompt
@@ -738,9 +727,9 @@
         <p class="text">
           To skip steps we can create a new list of timesteps that we'll call
           <code>strided_timesteps</code>, which does just this.
-          <code>strided_timesteps</code> will
-          correspond to the noisiest image (and thus the largest $t$) and
-          <code>strided_timesteps[-1]</code> will correspond to a clean image.
+          <code>strided_timesteps[0]</code> will correspond to the the largest $t$
+          (and thus the noisiest image) and
+          <code>strided_timesteps[-1]</code> will correspond to $t = 0$ (and thus a clean image).
           One
           simple way of constructing this list is by introducing a regular
           stride
@@ -770,8 +759,7 @@
             explained above.</li>
           <li>$\alpha_t = \frac{\bar\alpha_t}{\bar\alpha_{t'}}$</li>
           <li>$\beta_t = 1 - \alpha_t$</li>
-          <li>$x_0$ is our current estimate of the clean image using equation A.2
-            just like in section 1.3</li>
+          <li>$x_0$ is our current estimate of the clean image using one-step denoising</li>
         </ul>
 
         <p class="text"></p>
@@ -792,7 +780,9 @@
 
       See equations 6 and 7 of the <a
         href="https://arxiv.org/pdf/2006.11239">DDPM paper</a> for more
-      information. Be careful about bars above the alpha! Some have them and some do not.
+      information (Denoising Diffusion Probabilistic Models, the paper 
+      that introduces the diffusion model, which comes from Cal!). 
+      Be careful about bars above the alpha! Some have them and some do not.
 
       <p>
         First, create the list <code>strided_timesteps</code>. You should
@@ -802,7 +792,7 @@
       </p>
 
       <p>
-        Also implement the function <code>iterative_denoise(image,
+        Also implement the function <code>iterative_denoise(im_noisy,
           i_start)</code>, which takes a noisy image <code>image</code>, as well
         as a starting index <code>i_start</code>. The function should denoise
         an image starting at timestep <code>timestep[i_start]</code>, applying
@@ -830,7 +820,8 @@
           decreasing timesteps, starting at 990, with a stride of 30, eventually
           reaching 0. Also initialize the timesteps using the function
           <code>stage_1.scheduler.set_timesteps(timesteps=strided_timesteps)</code></li>
-        <li>Show the noisy image every 5th loop of denoising (it should
+        <li>Complete the <code>iterative_denoise</code> function</li>
+        <li>Show the noisy Campanile every 5th loop of denoising (it should
           gradually
           become less noisy)</li>
         <li>Show the final predicted clean image, using iterative denoising</li>
@@ -840,7 +831,6 @@
         <li>Show the predicted clean image using gaussian blurring, as was done
           in
           part 1.2.</li>
-        <li>Complete the <code>iterative_denoise</code> function</li>
       </ul>
 
       <b>Hints</b>
@@ -910,9 +900,9 @@
         we can do with the <code>iterative_denoise</code> function is to
         generate
         images from scratch. We can do this by setting <code>i_start = 0</code>
-        and passing in random noise. This effectively denoises pure noise.
+        and passing <code>im_noisy</code> as random noise. This effectively denoises pure noise.
         Please
-        do this, and show 5 results of <code>"a high quality photo"</code>.
+        do this, and show 5 results of the prompt<code>"a high quality photo"</code>.
       </p>
       <p class="text">
         <b>Deliverables</b>
@@ -994,15 +984,16 @@
         unconditional
         guidance for CFG. In the later part, you should always use
         <code>""</code>
-        null prompt for unconditional guidance and use <code>"a high quality
-          photo"</code> for unconditional generation.
+        null prompt for unconditional guidance.
       </p>
       <p class="text">
         <b>Deliverables</b>
         <ul>
           <li>Implement the <code>iterative_denoise_cfg</code> function</li>
           <li>Show 5 images of <code>"a high quality photo"</code> with a CFG
-            scale of $\gamma=7$.</li>
+            scale of $\gamma=7$. Now this prompt becomes a <b>condition</b> (but fairly weak)
+             to generate <b>conditional</b> noise! You will use your customized prompts as
+             stronger conditions in part 1.7 - part 1.9.</li>
         </ul>
       </p>
       <p class="text">
@@ -1056,15 +1047,14 @@
         natural images.
       </p>
       <p class="text">
-        Here, we're going to take the original test image, noise it a little,
+        Here, we're going to take the original Campanile image, noise it a little,
         and
         force it back onto the image manifold without any conditioning.
-        Effectively, we're going to get an image that is similar to the test
-        image
+        Effectively, we're going to get an image that is similar to the Campanile
         (with a low-enough noise level). This follows the <a
           href="https://sde-image-editing.github.io/">SDEdit</a> algorithm.
       </p>
-      <p>To start, please run the forward process to get a noisy test image, and
+      <p>To start, please run the forward process to get a noisy Campanile, and
         then run the <code>iterative_denoise_cfg</code> function using a
         starting
         index of [1, 3, 5, 7, 10, 20] steps and show the results, labeled with
@@ -1074,8 +1064,8 @@
         gradually matching the original image closer and closer.</p>
       <b> Deliverables </b>
       <ul>
-        <li>Edits of the test image, using the given prompt at noise levels [1,
-          3, 5, 7, 10, 20] with text prompt
+        <li>Edits of the Campanile image, using the given prompt at noise levels [1,
+          3, 5, 7, 10, 20] with the conditional text prompt
           <code>"a high quality photo"</code></li>
         <li>Edits of 2 of your own test images, using the same procedure.</li>
       </ul>
@@ -1256,7 +1246,7 @@
 
         <ul>
           <li>A properly implemented <code>inpaint</code> function</li>
-          <li>The test image inpainted (feel free to use your own mask)</li>
+          <li>The Campanile inpainted (feel free to use your own mask)</li>
           <li>2 of your own images edited (come up with your own mask)
             <ul>
               <li>look at the results from <a
@@ -1306,12 +1296,11 @@
         projection with a text prompt. This is no longer pure
         "projection to the natural image manifold" but also adds control using
         language. This is simply a matter of changing the prompt from
-        <code>"a high quality photo"</code> to any of the precomputed prompts we
-        provide you (if you want to use your own prompts, see appendix).</p>
+        <code>"a high quality photo"</code> to any of your prompt!</p>
 
       <b>Deliverables</b>
       <ul>
-        <li>Edits of the test image, using the given prompt at noise levels [1,
+        <li>Edits of the Campanile, using the given prompt at noise levels [1,
           3, 5, 7, 10, 20]</li>
         <li>Edits of 2 of your own test images, using the same procedure</li>
       </ul>
@@ -1368,12 +1357,10 @@
     <p class="text">
       To do this, we will denoise an image $x_t$ at step $t$ normally with the
       prompt
-      <code>"an oil painting of an old man"</code>, to obtain noise estimate
+      $p_1$, to obtain noise estimate
       $\epsilon_1$. But at the same time, we will flip $x_t$ upside down, and
       denoise with the prompt
-      <code>"an oil painting of people around a campfire"</code>, to get noise
-      estimate $\epsilon_2$. We can flip $\epsilon_2$ back, to make it
-      right-side up, and average the two noise estimates. We can then perform a
+      $p_2$, to get noise estimate $\epsilon_2$. We can flip $\epsilon_2$ back, and average the two noise estimates. We can then perform a
       reverse/denoising diffusion step with the averaged noise estimate.
     </p>
     <p class="text">
@@ -1398,11 +1385,7 @@
     <b>Deliverables</b>
     <ul>
       <li>Correctly implemented <code>visual_anagrams</code> function</li>
-      <li>A visual anagram where on one orientation
-        <code>"an oil painting of people around a campfire"</code> is displayed
-        and, when flipped, <code>"an oil painting of an old man"</code> is
-        displayed.</li>
-      <li>2 more illusions of your choice that change appearance when you flip
+      <li>2 illusions of your choice that change appearance when you flip
         it upside down.</li>
     </ul>
 
@@ -1458,9 +1441,7 @@
     <b>Deliverables</b>
     <ul>
       <li>Correctly implemented <code>make_hybrids</code> function</li>
-      <li>An image that looks like a <code>skull</code> from far away but a
-        <code>waterfall</code> from close up</li>
-      <li>2 more hybrid images of your choosing.</li>
+      <li>2 hybrid images of your choosing.</li>
     </ul>
 
     <b>Hints</b>
@@ -1479,17 +1460,19 @@
     </div>
 
     <h1> Part 2: Bells & Whistles </h1>
+    <b>Required for CS280A students only:</b>
     <ul>
-      <li>Up to <b>0.5 cookie points</b> from Part A and part B each, for a
-        maximum of <b>1 total cookie point</b>.</li>
-      <li><b>Create something cool with what you learned in this project (0.1
-          Cookie Points)</b></li>
-      <li><b>Design a course logo (0.2 Cookie Points)</b></li>
-      <li><b>Your own ideas (N cookie points)</b>: Be creative!</li>
+      <li><b>More visual anagrams!</b> Visual anagrams in part 1.8 are created by flipping images
+         upside down. However, there are much more transformations that also create visual
+         anagrams! Refer to this <a href="https://arxiv.org/pdf/2311.17919">paper</a> and select two more
+         transformations to create visual anagrams.</li>
+      <li><b>Design a course logo</b>! Doing text-conditioned image-to-image translation on UCB's
+        logo or your drawing may be a good idea.</li>
     </ul>
-
-    <h3>Using your own Prompts and Upsampling Generations</h3>
-    We provide you with code in the notebook to use your own prompts and upsample your generations!
+    <b>Optional for all students:</b>
+    <ul>
+      <li><b>Your own ideas</b>: Be creative!</li>
+    </ul>
 
     <script>
       window.addEventListener('load', function() {
@@ -1514,8 +1497,10 @@
     <h3>Acknowledgements</h3>
     <p>This project was a joint effort by <a
         href="https://dangeng.github.io/">Daniel Geng</a>, <a
-        href="https://ryantabrizi.com/">Ryan Tabrizi</a>, and <a
-        href="https://hangg7.com/">Hang Gao</a>, advised by <a
+        href="https://ryantabrizi.com/">Ryan Tabrizi</a>, <a
+        href="https://hangg7.com/">Hang Gao</a>, <a 
+        href="https://jingfeng0705.github.io/">Jingfeng Yang</a>, and <a 
+        href="https://www.linkedin.com/in/jameson-crate/">Jameson Crate</a>, advised by <a
         href="https://liyueshen.engin.umich.edu/">Liyue Shen</a>, <a
         href="https://andrewowens.com/">Andrew Owens</a>, and <a
         href="https://people.eecs.berkeley.edu/~efros/">Alexei
