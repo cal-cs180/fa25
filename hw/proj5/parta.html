@@ -391,12 +391,13 @@
       DeepFloyd was trained as a text-to-image model, which takes text prompts as input and outputs images that are aligned with the text. 
       However, a raw text string cannot be directly used as the model's input — we first need to convert it into a high-dimensional vector (of 4096 dimensions in our case) that the model can understand, a.k.a. prompt embeddings.
     <p>
-      Since prompt encoders are always very big and hard to run in your notebook, we provide a <a href="https://huggingface.co/spaces/jamesoncrate/CS180-T5-Encoder">simple interface</a> 
-      for generating your own prompt embeddings! Please follow its instructions to create a dictionary of embeddings for your prompts, download the resulting <code>.pth</code> file, and load it in Google Colab. 
+      Since prompt encoders are always very big and hard to run in your notebook, we provide two Huggingface clusters <a href="https://huggingface.co/spaces/jamesoncrate/CS180-T5-Encoder">A</a> and 
+      <a href="https://huggingface.co/spaces/konpat/CS180-T5-Encoder">B</a> for generating your own prompt embeddings! Both are the same and feel free to use either of them.
+      Please follow their instructions to create a dictionary of embeddings for your prompts, download the resulting <code>.pth</code> file, and load it in Google Colab. 
     </p>
     <p>
-      Please note that this cluster has a daily usage limit, so if you're unable to generate today, please try again tomorrow. Alternatively, start early and download the `.pth` file in advance 
-      — you only need to generate it once, and you can reuse the downloaded file afterward. If the official site experiences issues or runs out of computation, you can download one of our precomputed embeddings, 
+      Please note that both clusters have daily usage limits, so if you're unable to use one, please try another or try again tomorrow. Alternatively, <b>START EARLY</b> and download the <code>.pth</code> file in advance
+      — you only need to generate it once, and you can reuse the downloaded file afterward. If the official site experiences issues or runs out of computation, you can download one of our precomputed embeddings,
       but this is a predefined set of prompts and lacks flexibility. We want to see your creativity!
     </p>
 
