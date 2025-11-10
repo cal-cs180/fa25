@@ -348,6 +348,43 @@
     <br>
     <p style="color: #CC0000; display: inline;"><b>START EARLY!</b></p><span style="margin-left: 5px;"> </span>
 
+    <h2>Neural Network Resources</h2>
+    <p>
+      In this part, you will build and train a 
+      <a href="https://arxiv.org/abs/1505.04597" target="_blank">UNet</a>, 
+      which is more complex than the MLP you implemented in the NeRF project. 
+      We provide all class definitions you may need in the notebook (but feel free to add or modify them as necessary).  
+    </p>
+
+    <p>
+      Instead of asking ChatGPT to write everything for you, please consult the following resources when you get stuck — 
+      they will help you understand how and why things work under the hood.
+    </p>
+
+    <ul>
+      <li>
+        PyTorch Documentation — 
+        <a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.Conv2d.html" target="_blank"><code>Conv2d</code></a> 
+        and 
+        <a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.ConvTranspose2d.html" target="_blank"><code>ConvTranspose2d</code></a>, 
+        the two most important modules in UNet.
+      </li>
+      <li>
+        PyTorch Documentation — 
+        <a href="https://docs.pytorch.org/vision/main/generated/torchvision.datasets.MNIST.html" target="_blank"><code>torchvision.datasets.MNIST</code></a>, 
+        the dataset we’re going to use, and 
+        <a href="https://docs.pytorch.org/docs/stable/data.html" target="_blank"><code>torch.utils.data.DataLoader</code></a>, 
+        the off-the-shelf dataloader we can directly use.
+      </li>
+      <li>
+        PyTorch 
+        <a href="https://docs.pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html" target="_blank">tutorial</a> 
+        on how to train a classifier on the CIFAR10 dataset. 
+        The structure of your training code will be very similar to this one.
+      </li>
+    </ul>
+    <br>
+
     <!-- <p>Note: this is an updated version of <a href="https://cal-cs180.github.io/fa24/hw/proj5/">CS180's Project 5</a> part B with flow matching instead of DDPM diffusion. For the DDPM version, please see <a href="https://cal-cs180.github.io/fa24/hw/proj5/partb.html">here</a>.</p> -->
 
     <h1>Part 1: Training a Single-Step Denoising UNet</h1>
@@ -453,6 +490,12 @@
       0.5, 0.6, 0.8, 1.0]$, assuming normalized $x \in [0, 1]$.
 
       You should see noisier images as $\sigma$ increases.
+
+      <h3>Deliverable</h3>
+      <ul>
+        <li>A visualization of the noising process using $\sigma = [0.0,
+          0.2, 0.4, 0.5, 0.6, 0.8, 1.0]$.</li>
+      </ul>
       <!-- <div style="text-align: center;">
         <img src="assets/varying_sigma.png" alt="Varying Sigmas" height="600"
           style="display: block; margin-left: auto; margin-right: auto" />
@@ -514,6 +557,14 @@
         epochs of training</p>
     </div>
 
+    <h3>Deliverables</h3>
+    <ul>
+      <li>A training loss curve plot every few iterations during the whole
+        training process of $\sigma = 0.5$.</li>
+      <li>Sample results on the test set with noise level 0.5 after the first and the 5-th epoch
+        (staff solution takes ~3 minutes for 5 epochs on a Colab T4 GPU).</li>
+    </ul>
+
     <h2>1.2.2 Out-of-Distribution Testing</h2>
 
     <p class="text">
@@ -531,6 +582,12 @@
       <p class="text">Figure 7: Results on digits from the test set with varying
         noise levels.</p>
     </div> -->
+    <h3>Deliverables</h3>
+    <ul>
+      <li>Sample results on the test set with out-of-distribution noise levels
+        after the model is trained. Keep the same image and
+        vary $\sigma = [0.0, 0.2, 0.4, 0.5, 0.6, 0.8, 1.0]$.</li>
+    </ul>
 
     <h2>1.2.3 Denoising Pure Noise</h2>
     <p>To make denoising a generative task, we'd like to be able to denoise pure, random Gaussian noise. We can think of this as starting with a blank canvas $z = \epsilon$ where $\epsilon \sim N(0, I)$ and denoising it to get a clean image $x$.</p>
@@ -539,17 +596,8 @@
 
     <p>Sample from the denoiser that was trained to denoise pure noise. What patterns do you observe in the generated outputs? What relationship, if any, do these outputs have with the training images (e.g., digits 0–9)? Why might this be happening?</p>
 
-    <h2> Deliverables </h3>
+    <h3>Deliverables</h3>
     <ul>
-      <li>A visualization of the noising process using $\sigma = [0.0,
-        0.2, 0.4, 0.5, 0.6, 0.8, 1.0]$.</li>
-      <li>A training loss curve plot every few iterations during the whole
-        training process of $\sigma = 0.5$.</li>
-      <li>Sample results on the test set with noise level 0.5 after the first and the 5-th epoch
-        (staff solution takes ~3 minutes for 5 epochs on a Colab T4 GPU).</li>
-      <li>Sample results on the test set with out-of-distribution noise levels
-        after the model is trained. Keep the same image and
-        vary $\sigma = [0.0, 0.2, 0.4, 0.5, 0.6, 0.8, 1.0]$.</li>
       <li>A training loss curve plot every few iterations during the whole
         training process that denoises pure noise.</li>
       <li>Sample results on pure noise after the first and the 5-th epoch.</li>
@@ -752,7 +800,7 @@ We can now use our UNet for iterative denoising using the algorithm below! The r
         </div>
       </div> -->
 
-      <h2> Deliverables</h3>
+      <h3>Deliverables</h3>
       <ul>
         <li>A training loss curve plot for the time-conditioned UNet over the whole
           training process (figure 10).</li>
@@ -884,7 +932,7 @@ up1 = c2 * up1 + t2
       </div> -->
 
 
-      <h2>Deliverables</h2>
+      <h3>Deliverables</h3>
       <ul>
         <li>A training loss curve plot for the class-conditioned UNet over the whole training process. </li>
         <li>Sampling results for the class-conditioned UNet for 5 and 10 epochs. Class-conditioning lets us converge faster, hence why we only train for 10 epochs. Generate 4 instances of each digit as shown above.

@@ -1368,10 +1368,10 @@
       The full algorithm will be:
     </p>
     <p class="text">
-      $$ \epsilon_1 = \text{UNet}(x_t, t, p_1) $$
+      $$ \epsilon_1 = \text{CFG of UNet}(x_t, t, p_1) $$
     </p>
     <p class="text">
-      $$ \epsilon_2 = \text{flip}(\text{UNet}(\text{flip}(x_t), t, p_2)) $$
+      $$ \epsilon_2 = \text{flip}(\text{CFG of UNet}(\text{flip}(x_t), t, p_2)) $$
     </p>
     <p class="text">
       $$ \epsilon = (\epsilon_1 + \epsilon_2) / 2 $$
@@ -1421,10 +1421,10 @@
       frequencies of the other. The algorithm is:
     </p>
     <p class="text">
-      $ \epsilon_1 = \text{UNet}(x_t, t, p_1) $
+      $ \epsilon_1 = \text{CFG of UNet}(x_t, t, p_1) $
     </p>
     <p class="text">
-      $ \epsilon_2 = \text{UNet}(x_t, t, p_2) $
+      $ \epsilon_2 = \text{CFG of UNet}(x_t, t, p_2) $
     </p>
     <p class="text">
       $ \epsilon = f_\text{lowpass}(\epsilon_1) + f_\text{highpass}(\epsilon_2)$
