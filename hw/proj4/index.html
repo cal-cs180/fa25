@@ -251,6 +251,36 @@ undistorted_img = cv2.undistort(img, camera_matrix, dist_coeffs)
 </code></pre>
   </div>
   <p class="text">
+    <b>Note on black boundaries:</b> If you see black boundaries after undistorting your images, you can use
+    <code>cv2.getOptimalNewCameraMatrix()</code> to compute a new camera matrix that crops out the invalid pixels.
+    This function returns both a new intrinsics matrix and a valid pixel ROI (region of interest). You can then
+    crop your undistorted images to this ROI to remove the black borders. <b>Important:</b> If you crop your images
+    this way, make sure to update the principal point in your intrinsics matrix to account for the crop offset, as
+    the coordinate system origin has shifted.
+  </p>
+  <div style="width: 100%; margin: 0 auto">
+    <pre><code>import cv2
+
+# Example: Handling black boundaries from undistortion
+h, w = img.shape[:2]
+# alpha=1 keeps all pixels (more black borders), alpha=0 crops maximally
+new_camera_matrix, roi = cv2.getOptimalNewCameraMatrix(
+    camera_matrix, dist_coeffs, (w, h), alpha=0, (w, h)
+)
+undistorted_img = cv2.undistort(img, camera_matrix, dist_coeffs, None, new_camera_matrix)
+
+# Crop to the valid region of interest
+x, y, w_roi, h_roi = roi
+undistorted_img = undistorted_img[y:y+h_roi, x:x+w_roi]
+
+# Update the principal point to account for the crop offset
+new_camera_matrix[0, 2] -= x  # cx
+new_camera_matrix[1, 2] -= y  # cy
+
+# Use new_camera_matrix (with updated principal point) when creating your dataset!
+</code></pre>
+  </div>
+  <p class="text">
     After undistorting all your images, you'll need to save everything in a <code>.npz</code> file format that matches
     what's expected for the
     NeRF training code. You should split your images into training, validation, and test sets, then save using the
