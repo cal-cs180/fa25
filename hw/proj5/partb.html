@@ -364,10 +364,9 @@
     <ul>
       <li>
         PyTorch Documentation — 
-        <a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.Conv2d.html" target="_blank"><code>Conv2d</code></a> 
-        and 
-        <a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.ConvTranspose2d.html" target="_blank"><code>ConvTranspose2d</code></a>, 
-        the two most important modules in UNet.
+        <a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.Conv2d.html" target="_blank"><code>Conv2d</code></a>,
+        <a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.ConvTranspose2d.html" target="_blank"><code>ConvTranspose2d</code></a>, and
+        <a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.AvgPool2d.html" target="_blank"><code>AvgPool2d</code></a>.
       </li>
       <li>
         PyTorch Documentation — 
@@ -735,6 +734,11 @@ up1 = up1 * t2
   <p class="text">Figure 10: Time-Conditioned UNet training loss curve</p>
 </div> -->
 
+<h3>Deliverable</h3>
+<ul>
+  <li>A training loss curve plot for the time-conditioned UNet over the whole training process. </li>
+</ul>
+
 
 <h2> 2.3 Sampling from the UNet</h2>
 We can now use our UNet for iterative denoising using the algorithm below! The results would not be perfect, but legible digits should emerge
@@ -800,11 +804,9 @@ We can now use our UNet for iterative denoising using the algorithm below! The r
         </div>
       </div> -->
 
-      <h3>Deliverables</h3>
+      <h3>Deliverable</h3>
       <ul>
-        <li>A training loss curve plot for the time-conditioned UNet over the whole
-          training process (figure 10).</li>
-        <li>Sampling results for the time-conditioned UNet for 1, 5, and 10 epochs.
+        <li>Sampling results from the time-conditioned UNet for 1, 5, and 10 epochs.
         </li>
       </ul>
 
@@ -837,12 +839,10 @@ unflatten = c1 * unflatten + t1
 up1 = c2 * up1 + t2
 # Follow diagram to get the output.
 ...
-
-
-
         </code></pre>
     </div>
 
+    <h2> 2.5 Training the UNet</h2>
     <p>Training for this section will be the same as time-only, with the only difference being the conditioning vector $c$ and doing unconditional generation periodically.</p>
     <br>
         
@@ -852,7 +852,11 @@ up1 = c2 * up1 + t2
         style="width: 30%; display: block; margin-left: auto; margin-right: auto" />
         <p class="text">Algorithm B.3. Training class-conditioned UNet</p>
       </div>
-      
+    
+      <h3>Deliverable</h3>
+      <ul>
+        <li>A training loss curve plot for the class-conditioned UNet over the whole training process. </li>
+      </ul>
 
       <!-- <div style="text-align: center;"></div>
         <div style="text-align: center;">
@@ -863,7 +867,7 @@ up1 = c2 * up1 + t2
         </div>
       </div> -->
 
-      <h2> 2.5 Sampling from the Class-Conditioned UNet</h2>
+      <h2> 2.6 Sampling from the UNet </h2>
       <!-- The sampling process is the same as part A, where we saw that conditional results aren't good unless we use classifier-free guidance. Use classifier-free guidance with $\gamma = 5.0$ for this part. -->
        Now we will sample with class-conditioning and will use classifier-free guidance with $\gamma = 5.0$.
       <br>
@@ -932,10 +936,9 @@ up1 = c2 * up1 + t2
       </div> -->
 
 
-      <h3>Deliverables</h3>
+      <h3>Deliverable</h3>
       <ul>
-        <li>A training loss curve plot for the class-conditioned UNet over the whole training process. </li>
-        <li>Sampling results for the class-conditioned UNet for 5 and 10 epochs. Class-conditioning lets us converge faster, hence why we only train for 10 epochs. Generate 4 instances of each digit as shown above.
+        <li>Sampling results from the class-conditioned UNet for 1, 5, and 10 epochs. Class-conditioning lets us converge faster, hence why we only train for 10 epochs. Generate 4 instances of each digit as shown above.
         </li>
       </ul>
 
