@@ -806,8 +806,8 @@ We can now use our UNet for iterative denoising using the algorithm below! The r
 
       <h3>Deliverables</h3>
       <ul>
-        <li>Sampling results from the time-conditioned UNet for 1, 5, and 10 epochs.</li>
-        <li>The results should not be perfect, but reasonably good. Check the Bells and Whistles if you want to make it better! (optional for CS180, required for CS280A)</li>
+        <li>Sampling results from the time-conditioned UNet for 1, 5, and 10 epochs. The results should not be perfect, but reasonably good.</li>
+        <li>(optional for CS180, required for CS280A) Check the Bells and Whistles if you want to make it better!</li>
       </ul>
 
 
@@ -940,19 +940,19 @@ up1 = c2 * up1 + t2
       <ul>
         <li>Sampling results from the class-conditioned UNet for 1, 5, and 10 epochs. Class-conditioning lets us converge faster, hence why we only train for 10 epochs. Generate 4 instances of each digit as shown above.
         </li>
-        <li>Can we get rid of the annoying learning rate scheduler? Simplicity is the best. Please try to maintain the same performance after removing the exponential 
+        <li><b>Can we get rid of the annoying learning rate scheduler?</b> Simplicity is the best. Please try to maintain the same performance after removing the exponential 
         learning rate scheduler. Show your visualization after training without the scheduler and provide a description of what you did to compensate for the loss of the scheduler.</li>
       </ul>
 
     <h1> Part 3: Bells & Whistles </h1>
     <b>Required for CS280A students only:</b>
     <ul>
-      <li><b>A better time-conditioned only UNet: </b> Our time-conditioning only UNet in part 2.3 is actually not perfect. Its result is worse than the UNet conditioned by both time and class.
+      <li><b>A better time-conditioned only UNet: </b> Our time-conditioning only UNet in part 2.3 is actually far from perfect. Its result is way worse than the UNet conditioned by both time and class.
       We can definitively make it better! Show a better visualization image for the time-conditioning only network. Possible approaches include extending the training schedule or making the architecture more expressive. </li>
     </ul>
     <b>Optional for all students:</b>
     <ul>
-      <li><b>Your own ideas</b>: Be creative! This UNet can generate images more than digits! You can try it on the celebrity face dataset <a href="https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html">CelebA</a> or <a href="https://www.cs.toronto.edu/~kriz/cifar.html">CIFAR10</a>!</li>
+      <li><b>Your own ideas</b>: Be creative! This UNet can generate images more than digits! You can try it on <a href="http://ufldl.stanford.edu/housenumbers/">SVHN</a> (still digits, but more fancy!), <a href="https://github.com/zalandoresearch/fashion-mnist">Fashion-MNIST</a> (not digits, but still grayscale!), or <a href="https://www.cs.toronto.edu/~kriz/cifar.html">CIFAR10</a>!</li>
     </ul>
 
       <script>
